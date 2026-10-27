@@ -1,0 +1,6 @@
+*.exe
+bench
+__pycache__/
+docs/superpowers/
+~$*.pptx
+CIS4930_Project_Progress_Slide_v1*.pptx
