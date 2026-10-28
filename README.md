@@ -6,5 +6,5 @@ Team: Riyon Praveen, Vishakha Tiwari, Sevara Badriddinova, Tuan Khang Phan
 
 - `Project Proposal.pdf`: the proposal
 - `Team01_Midterm.pptx`: Week 9 progress slide (speaker script is in the notes)
-- `midterm_script.md`: who says what in the midterm talk, plus Q&A prep
+- `midterm_script.md`: single-presenter midterm script, plus Q&A prep
 - `learned-index-bench/`: quick RMI vs binary search benchmark used for the first result. Every teammate should run it once on their own machine, see its README.
