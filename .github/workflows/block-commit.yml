@@ -1,0 +1,22 @@
+name: block-commit
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: scan commit messages
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            RANGE="${{ github.event.pull_request.base.sha }}..${{ github.event.pull_request.head.sha }}"
+          elif [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            RANGE="${{ github.sha }}"
+          else
+            RANGE="${{ github.event.before }}..${{ github.sha }}"
+          fi
+          if git log --format='%B' "$RANGE" | grep -qiE 'co-authored-by:.*(claude|anthropic)|noreply@anthropic\.com|generated with \[?claude'; then
+            echo "::error::Claude co-author / attribution found. These commits are banned."
+            exit 1
+          fi
