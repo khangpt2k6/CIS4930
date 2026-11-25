@@ -1,0 +1,6 @@
+- [CIS 4930 team size](cis4930-team-size.md) — final project teams are 3-4, the syllabus PDF's "2-3" is stale
+- [Research review tone](research-review-tone.md) - first-person "I" voice throughout, professional register, no casual phrasing
+- [Student identity](student-identity.md) - name + student ID header for individual submissions
+- [Presentation script style](presentation-script-style.md) - formal academic register, hyphen bullets, full sentences, pronunciation hints
+- [CIS 4930 final project](cis4930-final-project.md) - due Dec 2 2026, 40% of grade, per-teammate task split + checkpoints
+- [No commits in CIS repo](no-commit-cis-repo.md) - never commit/push there unless explicitly asked, overrides global push rule
