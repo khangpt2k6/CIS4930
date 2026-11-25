@@ -4,3 +4,4 @@
 - [Presentation script style](presentation-script-style.md) - formal academic register, hyphen bullets, full sentences, pronunciation hints
 - [CIS 4930 final project](cis4930-final-project.md) - due Dec 2 2026, 40% of grade, per-teammate task split + checkpoints
 - [No commits in CIS repo](no-commit-cis-repo.md) - never commit/push there unless explicitly asked, overrides global push rule
+- [Removed repo docs](removed-repo-docs.md) - task split + paper review docx/pdf removed from repo 2026-11-25, recover via git history
