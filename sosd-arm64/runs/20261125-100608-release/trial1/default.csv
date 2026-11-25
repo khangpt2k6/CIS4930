@@ -1,0 +1,5 @@
+RS,10,27.5188,448960,5706584,BinarySearch,lognormal_1M_uint64
+PGM,16,38.1854,21060,10070708,BinarySearch,lognormal_1M_uint64
+BTree,32,31.5208,580656,69625,BinarySearch,lognormal_1M_uint64
+RobinHash,0,9.50542,67108864,18987333,BinarySearch,lognormal_1M_uint64
+BinarySearch,0,45.1133,0,0,BinarySearch,lognormal_1M_uint64

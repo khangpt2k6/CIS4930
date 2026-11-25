@@ -1,0 +1,11 @@
+Repeating lookup code 5 time(s).
+Using 1 thread(s).
+we only support thread pinning under Linux
+read 1000000 values from /Users/sevarabadriddinova/Desktop/SOSD/data/lognormal_1M_uint64 in 7 ms (142.857 M values/s)
+data is unique
+read 100000 values from /Users/sevarabadriddinova/Desktop/SOSD/data/lognormal_1M_uint64_equality_lookups_100K in 1 ms (100 M values/s)
+RESULT: RS,10,47.3475,22.8925,21.8867,23.5475,22.7079,448960,4487208,BinarySearch
+RESULT: PGM,16,43.83,35.7204,35.1392,34.2338,33.9346,21060,9853750,BinarySearch
+RESULT: BTree,32,33.4971,30.9283,30.7033,30.6092,30.5346,580656,234375,BinarySearch
+RESULT: RobinHash,0,16.3358,13.1037,9.41167,7.36,6.81916,67108864,23512959,BinarySearch
+RESULT: BinarySearch,0,72.6488,51.3862,59.04,62.9688,54.0779,0,0,BinarySearch

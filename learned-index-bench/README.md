@@ -17,7 +17,8 @@ g++ -O3 -march=native -std=c++17 bench.cpp -o bench      # on Apple Silicon use 
 g++ -O3 -march=native -std=c++17 bench.cpp -o bench.exe
 ./bench.exe results/<cpu-name>_<arch>.csv --pin
 
-python plot.py results/<cpu-name>_<arch>.csv results/<cpu-name>_<arch>.png "<CPU name>"
+python plot.py results/<cpu-name>_<arch>.csv results/<cpu-name>_<arch>.png "<CPU name>" [cache_bytes] ["cache label"]
+# cache_bytes defaults to the Ryzen 16 MB L3; pass your own CPU's value (e.g. 20971520 "keys exceed P-core L2 (20 MB)" for the M6)
 ```
 
 It needs about 2 GB of free RAM and takes 3 to 6 minutes. Plug in the laptop and close other apps first.
@@ -29,3 +30,13 @@ Name files like `ryzen_ai7_350_x86.csv`, `apple_m2_arm.csv`, `intel_i7_1360p_x86
 `dataset, n, index, leaves, bytes, median_ns, min_ns, max_ns, avg_log2_err`
 
 Each row is 2M random lookups of existing keys, 1 warm-up run, then the median, min and max of 5 runs. `bytes` is the RMI model size (binary search uses no extra memory). `avg_log2_err` is the average log2 of the last-mile search window, so lower means a more accurate model.
+
+## Compare CPUs (WP5)
+
+```bash
+python compare_cpus.py ../report/figures/wp5 \
+  "AMD Ryzen AI 7 350 (x86)|#c0392b|16777216|results/ryzen_ai7_350_x86.csv" \
+  "Apple M6 (ARM)|#257de0|20971520|results/apple_m6_arm.csv"
+```
+
+Each argument is `label|color|last-level-cache bytes|csv`; add one per CPU. Writes `wp5_summary.csv` and the two WP5 figures.

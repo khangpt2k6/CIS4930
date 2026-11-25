@@ -1,0 +1,15 @@
+date: Wed Nov 25 11:13:10 EST 2026
+      Model Name: MacBook Pro
+      Model Identifier: Mac18,1
+      Chip: Apple M6
+      Total Number of Cores: 12 (2 Super, 4 Performance, and 6 Efficiency)
+      Memory: 16 GB
+ProductName:		macOS ProductVersion:		27.2.1 BuildVersion:		26B7131 
+compiler: Apple clang version 17.0.0 (clang-1700.6.3.2)
+flags: -O3 -mcpu=native -std=c++17
+hw.perflevel0.l1dcachesize: 131072
+hw.perflevel0.l2cachesize: 20971520
+hw.perflevel1.l2cachesize: 20971520
+hw.cachelinesize: 128
+power: Now drawing from 'AC Power'
+ALEX e18fc4a patched; PGM c6fcf3d

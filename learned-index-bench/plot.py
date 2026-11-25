@@ -10,6 +10,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 src, dst, label = sys.argv[1], sys.argv[2], sys.argv[3]
+# optional: cache size in bytes and its label (default: the Ryzen 16 MB L3 used for the first result)
+cache_bytes = int(sys.argv[4]) if len(sys.argv) > 4 else 16 * 2**20
+cache_label = sys.argv[5] if len(sys.argv) > 5 else "keys exceed L3 (16 MB)"
 rows = list(csv.DictReader(open(src)))
 
 series = defaultdict(dict)  # (index, dataset) -> n -> row with lowest median
@@ -36,8 +39,8 @@ for key, (name, color, marker, ls) in styles.items():
     ax.errorbar(xs, ys, yerr=[lo, hi], label=name, color=color, marker=marker, ls=ls, ms=3.5, lw=1.2, capsize=2)
 
 ax.set_ylim(bottom=0)
-ax.axvline(16 * 2**20 / 8, color="gray", lw=0.8, ls=":")
-ax.text(16 * 2**20 / 8 * 1.1, ax.get_ylim()[1] * 0.97, "keys exceed L3 (16 MB)", fontsize=7, va="top", color="dimgray")
+ax.axvline(cache_bytes / 8, color="gray", lw=0.8, ls=":")
+ax.text(cache_bytes / 8 * 1.1, ax.get_ylim()[1] * 0.97, cache_label, fontsize=7, va="top", color="dimgray")
 ax.set_xscale("log")
 ax.set_xlabel("Number of keys (sorted 64-bit)")
 ax.set_ylabel("Lookup latency (ns, median)")
