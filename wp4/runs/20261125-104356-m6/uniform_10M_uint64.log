@@ -1,0 +1,89 @@
+dataset uniform_10M_uint64: 10000000 unique keys
+== trial 1/3
+  build  ALEX              trial 1       32.36 ns/op  checksum 10000000
+  range  ALEX       10     trial 1       81.73 ns/op  checksum 721386720439126550
+  range  ALEX       100    trial 1      250.38 ns/op  checksum 9386625689555186762
+  range  ALEX       1000   trial 1      831.40 ns/op  checksum 4534755900577525461
+  build  BTree             trial 1        2.37 ns/op  checksum 10000000
+  range  BTree      10     trial 1      181.47 ns/op  checksum 721386720439126550
+  range  BTree      100    trial 1      323.05 ns/op  checksum 9386625689555186762
+  range  BTree      1000   trial 1      880.97 ns/op  checksum 4534755900577525461
+  build  PGM               trial 1        5.46 ns/op  checksum 10000000
+  range  PGM        10     trial 1       98.09 ns/op  checksum 721386720439126550
+  range  PGM        100    trial 1      166.19 ns/op  checksum 9386625689555186762
+  range  PGM        1000   trial 1      487.39 ns/op  checksum 4534755900577525461
+  build  DynPGM            trial 1        8.77 ns/op  checksum 10000000
+  range  DynPGM     10     trial 1      221.82 ns/op  checksum 721386720439126550
+  range  DynPGM     100    trial 1      522.22 ns/op  checksum 9386625689555186762
+  range  DynPGM     1000   trial 1     3502.20 ns/op  checksum 4534755900577525461
+  mixed  ALEX       0.0    trial 1       27.25 ns/op  checksum 127917172128185333
+  mixed  BTree      0.0    trial 1      129.62 ns/op  checksum 127917172128185333
+  mixed  DynPGM     0.0    trial 1       52.12 ns/op  checksum 127917172128185333
+  mixed  ALEX       0.1    trial 1       34.91 ns/op  checksum 13934774751879013177
+  mixed  BTree      0.1    trial 1      154.31 ns/op  checksum 13934774751879013177
+  mixed  DynPGM     0.1    trial 1      129.40 ns/op  checksum 13934774751879013177
+  mixed  ALEX       0.5    trial 1       86.96 ns/op  checksum 5666245807261073442
+  mixed  BTree      0.5    trial 1      182.07 ns/op  checksum 5666245807261073442
+  mixed  DynPGM     0.5    trial 1      118.98 ns/op  checksum 5666245807261073442
+  mixed  ALEX       0.9    trial 1      108.23 ns/op  checksum 4509002743024642743
+  mixed  BTree      0.9    trial 1      185.52 ns/op  checksum 4509002743024642743
+  mixed  DynPGM     0.9    trial 1       82.19 ns/op  checksum 4509002743024642743
+== trial 2/3
+  build  ALEX              trial 2       32.65 ns/op  checksum 10000000
+  range  ALEX       10     trial 2      102.78 ns/op  checksum 721386720439126550
+  range  ALEX       100    trial 2      254.60 ns/op  checksum 9386625689555186762
+  range  ALEX       1000   trial 2      835.45 ns/op  checksum 4534755900577525461
+  build  BTree             trial 2        2.65 ns/op  checksum 10000000
+  range  BTree      10     trial 2      198.37 ns/op  checksum 721386720439126550
+  range  BTree      100    trial 2      318.39 ns/op  checksum 9386625689555186762
+  range  BTree      1000   trial 2      922.66 ns/op  checksum 4534755900577525461
+  build  PGM               trial 2        5.45 ns/op  checksum 10000000
+  range  PGM        10     trial 2      109.60 ns/op  checksum 721386720439126550
+  range  PGM        100    trial 2      165.58 ns/op  checksum 9386625689555186762
+  range  PGM        1000   trial 2      483.62 ns/op  checksum 4534755900577525461
+  build  DynPGM            trial 2        9.20 ns/op  checksum 10000000
+  range  DynPGM     10     trial 2      218.99 ns/op  checksum 721386720439126550
+  range  DynPGM     100    trial 2      519.72 ns/op  checksum 9386625689555186762
+  range  DynPGM     1000   trial 2     3513.94 ns/op  checksum 4534755900577525461
+  mixed  ALEX       0.0    trial 2       28.09 ns/op  checksum 127917172128185333
+  mixed  BTree      0.0    trial 2      131.86 ns/op  checksum 127917172128185333
+  mixed  DynPGM     0.0    trial 2       54.00 ns/op  checksum 127917172128185333
+  mixed  ALEX       0.1    trial 2       33.97 ns/op  checksum 13934774751879013177
+  mixed  BTree      0.1    trial 2      153.01 ns/op  checksum 13934774751879013177
+  mixed  DynPGM     0.1    trial 2      129.53 ns/op  checksum 13934774751879013177
+  mixed  ALEX       0.5    trial 2       87.97 ns/op  checksum 5666245807261073442
+  mixed  BTree      0.5    trial 2      171.97 ns/op  checksum 5666245807261073442
+  mixed  DynPGM     0.5    trial 2      121.28 ns/op  checksum 5666245807261073442
+  mixed  ALEX       0.9    trial 2      102.49 ns/op  checksum 4509002743024642743
+  mixed  BTree      0.9    trial 2      190.10 ns/op  checksum 4509002743024642743
+  mixed  DynPGM     0.9    trial 2       84.23 ns/op  checksum 4509002743024642743
+== trial 3/3
+  build  ALEX              trial 3       44.91 ns/op  checksum 10000000
+  range  ALEX       10     trial 3       83.14 ns/op  checksum 721386720439126550
+  range  ALEX       100    trial 3      251.99 ns/op  checksum 9386625689555186762
+  range  ALEX       1000   trial 3      838.04 ns/op  checksum 4534755900577525461
+  build  BTree             trial 3        1.98 ns/op  checksum 10000000
+  range  BTree      10     trial 3      185.87 ns/op  checksum 721386720439126550
+  range  BTree      100    trial 3      321.14 ns/op  checksum 9386625689555186762
+  range  BTree      1000   trial 3      994.02 ns/op  checksum 4534755900577525461
+  build  PGM               trial 3        6.24 ns/op  checksum 10000000
+  range  PGM        10     trial 3      132.60 ns/op  checksum 721386720439126550
+  range  PGM        100    trial 3      167.69 ns/op  checksum 9386625689555186762
+  range  PGM        1000   trial 3      493.48 ns/op  checksum 4534755900577525461
+  build  DynPGM            trial 3        9.11 ns/op  checksum 10000000
+  range  DynPGM     10     trial 3      222.70 ns/op  checksum 721386720439126550
+  range  DynPGM     100    trial 3      547.77 ns/op  checksum 9386625689555186762
+  range  DynPGM     1000   trial 3     3540.36 ns/op  checksum 4534755900577525461
+  mixed  ALEX       0.0    trial 3       27.02 ns/op  checksum 127917172128185333
+  mixed  BTree      0.0    trial 3      129.84 ns/op  checksum 127917172128185333
+  mixed  DynPGM     0.0    trial 3       51.79 ns/op  checksum 127917172128185333
+  mixed  ALEX       0.1    trial 3       33.40 ns/op  checksum 13934774751879013177
+  mixed  BTree      0.1    trial 3      153.58 ns/op  checksum 13934774751879013177
+  mixed  DynPGM     0.1    trial 3      133.88 ns/op  checksum 13934774751879013177
+  mixed  ALEX       0.5    trial 3       98.58 ns/op  checksum 5666245807261073442
+  mixed  BTree      0.5    trial 3      257.07 ns/op  checksum 5666245807261073442
+  mixed  DynPGM     0.5    trial 3      127.65 ns/op  checksum 5666245807261073442
+  mixed  ALEX       0.9    trial 3      112.39 ns/op  checksum 4509002743024642743
+  mixed  BTree      0.9    trial 3      228.28 ns/op  checksum 4509002743024642743
+  mixed  DynPGM     0.9    trial 3       87.93 ns/op  checksum 4509002743024642743
+all checksums agree

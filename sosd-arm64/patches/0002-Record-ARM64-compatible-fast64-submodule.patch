@@ -1,0 +1,19 @@
+From 28b078c7785501aaff835e660c95fb7df29a3f6b Mon Sep 17 00:00:00 2001
+From: sevbad <sbadriddinova@usf.edu>
+Date: Thu, 12 Nov 2026 10:11:30 -0500
+Subject: [PATCH 2/2] Record ARM64-compatible fast64 submodule
+
+---
+ fast64 | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/fast64 b/fast64
+index b3d15a9..e3f4b56 160000
+--- a/fast64
++++ b/fast64
+@@ -1 +1 @@
+-Subproject commit b3d15a95d8a256e514b3ac4a108607b08db04d34
++Subproject commit e3f4b56ad3ef1a126f8adef815a8400ea3b42b09
+-- 
+2.34.1
+

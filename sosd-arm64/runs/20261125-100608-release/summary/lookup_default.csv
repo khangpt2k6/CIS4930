@@ -1,0 +1,6 @@
+index,variant,config,size_bytes,trials,median_ns,min_ns,max_ns,spread_pct
+RS,10,radix_bits=17;max_error=32,448960,3,27.52,22.89,28.43,20.1
+PGM,16,epsilon=16,21060,3,35.54,35.14,38.19,8.6
+BTree,32,stx_btree;size_scale=32,580656,3,30.7,30.51,31.52,3.3
+RobinHash,0,,67108864,3,9.51,9.41,10.22,8.5
+BinarySearch,0,,0,3,45.11,44.61,59.04,32.0

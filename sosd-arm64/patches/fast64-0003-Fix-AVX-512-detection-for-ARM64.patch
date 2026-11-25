@@ -1,0 +1,35 @@
+From e3f4b56ad3ef1a126f8adef815a8400ea3b42b09 Mon Sep 17 00:00:00 2001
+From: sevbad <sbadriddinova@usf.edu>
+Date: Thu, 12 Nov 2026 10:10:35 -0500
+Subject: [PATCH] Fix AVX-512 detection for ARM64
+
+---
+ build.rs | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/build.rs b/build.rs
+index ba40368..4ddeebb 100644
+--- a/build.rs
++++ b/build.rs
+@@ -21,7 +21,17 @@
+ 
+ 
+ fn main() {
+-    let have_avx512 = is_x86_feature_detected!("avx512f");
++    let have_avx512 = {
++        #[cfg(any(target_arch = "x86", target_arch = "x86_64"))]
++        {
++            is_x86_feature_detected!("avx512f")
++        }
++
++        #[cfg(not(any(target_arch = "x86", target_arch = "x86_64")))]
++        {
++            false
++        }
++    };
+     
+     let avx512_flag = if have_avx512 {
+         "1"
+-- 
+2.34.1
+
