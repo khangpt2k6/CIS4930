@@ -1,0 +1,18 @@
+date: 2026-11-27 17:10 EST
+cpu: AMD Ryzen AI 7 350 w/ Radeon 860M               (8 cores: 4 Zen 5 + 4 Zen 5c; L2 1 MB per core; L3 16 MB)
+memory: 15.3 GB; free at start: 5.33 GB
+os: Microsoft Windows 11 Home 10.0.26200
+power: AC; plan: Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)
+compiler: g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0
+flags: -O3 -march=native -std=c++17 -DNDEBUG
+deps: PGM-index c6fcf3d, RadixSpline ab96aa5, STX B+tree 0.9 (SOSD f52f4cb)
+source sha256: 001d458e98a94ebfdcfcf04c7e51b20de2088166e1b36e823a6257fb5eac20d5
+pinning: logical CPU 0, high priority class (--pin)
+data: SOSD 200M uint64 from Harvard Dataverse doi:10.7910/DVN/JGVF9A; md5 of the unpacked files:
+  aeedc7be338399ced89d0bb82287e024  books_200M_uint64
+  3b0f820caa0d62150e87ce94ec989978  fb_200M_uint64
+  a7f6b8d2df09fcda5d9cfbc87d765979  osm_cellids_200M_uint64
+  4f1402b1c476d67f77d2da4955432f7d  wiki_ts_200M_uint64
+args: --pin --reps 5, trials 3
+note: other applications (browser, editor) were open during the run
+power at end: 1

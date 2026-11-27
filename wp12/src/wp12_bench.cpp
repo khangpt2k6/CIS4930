@@ -19,6 +19,7 @@
 //
 // Usage: wp12_bench <out.csv> --data DIR [--datasets a,b] [--pin] [--reps R=5] [--queries Q=2000000]
 //                   [--lat-queries L=500000] [--sample N]   (--sample keeps N evenly spaced keys, for smoke tests)
+//                   [--only idx1,idx2] [--max-key K]       (ablations: run only these indexes; drop keys above K)
 #ifdef _WIN32
 #include <windows.h>
 #include <psapi.h>
@@ -324,6 +325,8 @@ int main(int argc, char** argv) {
   bool pin = false;
   int reps = 5;
   size_t nq = 2000000, lq = 500000, sample = 0;
+  std::vector<std::string> only;
+  u64 max_key = UINT64_MAX;
   for (int i = 1; i < argc; i++) {
     std::string a = argv[i];
     if (a == "--pin") pin = true;
@@ -332,6 +335,10 @@ int main(int argc, char** argv) {
     else if (a == "--queries" && i + 1 < argc) nq = strtoull(argv[++i], nullptr, 10);
     else if (a == "--lat-queries" && i + 1 < argc) lq = strtoull(argv[++i], nullptr, 10);
     else if (a == "--sample" && i + 1 < argc) sample = strtoull(argv[++i], nullptr, 10);
+    else if (a == "--max-key" && i + 1 < argc) max_key = strtoull(argv[++i], nullptr, 10);
+    else if (a == "--only" && i + 1 < argc) {
+      for (char* s = strtok(argv[++i], ","); s; s = strtok(nullptr, ",")) only.push_back(s);
+    }
     else if (a == "--datasets" && i + 1 < argc) {
       datasets.clear();
       for (char* s = strtok(argv[++i], ","); s; s = strtok(nullptr, ",")) datasets.push_back(s);
@@ -339,7 +346,7 @@ int main(int argc, char** argv) {
   }
   if (!outp || dir.empty()) {
     fprintf(stderr, "usage: wp12_bench <out.csv> --data DIR [--datasets a,b] [--pin] [--reps R] [--queries Q] "
-                    "[--lat-queries L] [--sample N]\n");
+                    "[--lat-queries L] [--sample N] [--only idx1,idx2] [--max-key K]\n");
     return 1;
   }
   if (pin) pin_to_cpu0();
@@ -362,7 +369,14 @@ int main(int argc, char** argv) {
       for (size_t i = 0; i < sample; i++) s[i] = keys[(size_t)((double)i * keys.size() / sample)];
       keys.swap(s);
     }
+    if (max_key != UINT64_MAX) {
+      size_t before = keys.size();
+      keys.erase(std::upper_bound(keys.begin(), keys.end(), max_key), keys.end());
+      fprintf(stderr, "%s: --max-key removed %zu keys above %llu\n", ds.c_str(), before - keys.size(),
+              (unsigned long long)max_key);
+    }
     const size_t n = keys.size();
+    auto want = [&](const char* idx) { return only.empty() || std::find(only.begin(), only.end(), idx) != only.end(); };
     fprintf(stderr, "== %s: %zu keys in file, %zu distinct used, loaded in %.0f ms\n", ds.c_str(), n_raw, n,
             ms_since(t_load));
 
@@ -395,7 +409,7 @@ int main(int argc, char** argv) {
     auto exact = [&](size_t i, size_t p) { return p == truth[i]; };
     const u64* K = keys.data();
 
-    {  // oracle: a perfect model. The true position is given; the lookup only reads that key to confirm it.
+    if (want("oracle")) {  // oracle: a perfect model. The true position is given; the lookup only reads that key to confirm it.
       auto orc = [&](size_t i) { size_t p = truth[i]; return p + (K[p] != qs[i]); };
       for (size_t i = 0; i < nq; i++)
         if (orc(i) != truth[i]) { fprintf(stderr, "MISMATCH %s oracle query %zu\n", ds.c_str(), i); exit(2); }
@@ -406,18 +420,18 @@ int main(int argc, char** argv) {
       fprintf(stderr, "  %-24s mean %7.1f ns  p50 %7.1f  p99 %7.1f\n", "oracle", s.mean, s.p50, s.p99);
     }
 
-    run("binary_search", "std::lower_bound", 0, 0, 0,
+    if (want("binary_search")) run("binary_search", "std::lower_bound", 0, 0, 0,
         [&](u64 k) { return (size_t)(std::lower_bound(keys.begin(), keys.end(), k) - keys.begin()); }, exact);
-    run("binary_search_branchless", "cmov", 0, 0, 0, [&](u64 k) { return branchless_lower_bound(K, n, k); }, exact);
-    run("interpolation", "8 probes", 0, 0, 0, [&](u64 k) { return interpolation_lower_bound(K, n, k); }, exact);
-    {
+    if (want("binary_search_branchless")) run("binary_search_branchless", "cmov", 0, 0, 0, [&](u64 k) { return branchless_lower_bound(K, n, k); }, exact);
+    if (want("interpolation")) run("interpolation", "8 probes", 0, 0, 0, [&](u64 k) { return interpolation_lower_bound(K, n, k); }, exact);
+    if (want("eytzinger")) {
       auto t0 = clk::now();
       Eytzinger ey(keys);
       double b = ms_since(t0);
       run("eytzinger", "prefetch", ey.bytes(), b, 0, [&](u64 k) { return ey.lookup(k); },
           [&](size_t i, size_t p) { return p >= 1 && p <= n && ey.b[p] == qs[i]; });
     }
-    for (size_t kpl : {32, 128, 512, 2048, 8192, 32768}) {
+    if (want("rmi")) for (size_t kpl : {32, 128, 512, 2048, 8192, 32768}) {
       size_t nl = std::max<size_t>(1, n / kpl);
       auto t0 = clk::now();
       RMI rmi(keys, nl);
@@ -435,12 +449,14 @@ int main(int argc, char** argv) {
         return (size_t)(std::lower_bound(K + r.lo, K + r.hi, k) - K);
       }, exact);
     };
-    pgm_run(std::integral_constant<size_t, 8>{});
-    pgm_run(std::integral_constant<size_t, 32>{});
-    pgm_run(std::integral_constant<size_t, 128>{});
-    pgm_run(std::integral_constant<size_t, 512>{});
-    pgm_run(std::integral_constant<size_t, 2048>{});
-    for (auto [bits, err] : std::vector<std::pair<size_t, size_t>>{{24, 8}, {22, 16}, {20, 32}, {18, 64}, {16, 128}, {14, 256}}) {
+    if (want("pgm")) {
+      pgm_run(std::integral_constant<size_t, 8>{});
+      pgm_run(std::integral_constant<size_t, 32>{});
+      pgm_run(std::integral_constant<size_t, 128>{});
+      pgm_run(std::integral_constant<size_t, 512>{});
+      pgm_run(std::integral_constant<size_t, 2048>{});
+    }
+    if (want("radixspline")) for (auto [bits, err] : std::vector<std::pair<size_t, size_t>>{{24, 8}, {22, 16}, {20, 32}, {18, 64}, {16, 128}, {14, 256}}) {
       auto t0 = clk::now();
       rs::Builder<u64> bld(keys.front(), keys.back(), bits, err);
       for (u64 k : keys) bld.AddKey(k);
@@ -452,7 +468,7 @@ int main(int argc, char** argv) {
             return (size_t)(std::lower_bound(K + sb.begin, K + sb.end, k) - K);
           }, exact);
     }
-    for (size_t s : {8, 32, 128, 512, 2048, 8192}) {
+    if (want("btree")) for (size_t s : {8, 32, 128, 512, 2048, 8192}) {
       using BT = stx::btree_map<u64, u64>;
       auto t0 = clk::now();
       BT bt;

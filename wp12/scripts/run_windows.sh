@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 # Objectives 1-2 run natively on Windows (Git Bash + MinGW g++), pinned like learned-index-bench --pin.
 #   bash wp12/scripts/run_windows.sh [tag]    env: DATA=C:/Users/<you>/sosd_data TRIALS=3 REPS=5 FORCE=1 (allow battery)
+#   EXTRA="..." passes more flags to wp12_bench, e.g. the fb outlier ablation:
+#   TAG=fb-outliers EXTRA="--datasets fb_200M_uint64 --only binary_search,rmi,pgm,radixspline --max-key 1099511627776" bash wp12/scripts/run_windows.sh
 # Get the data first with download_sosd.sh (it needs zstd; run it in WSL or any Linux shell) and copy the four
 # *_200M_uint64 files into DATA. Keep DATA outside OneDrive. Needs about 4 GB of free memory.
 set -euo pipefail
 W="$(cd "$(dirname "$0")/.." && pwd)"; TP="$W/../wp3/third_party"
-TAG="${1:-ryzen-win}"; TRIALS="${TRIALS:-3}"; REPS="${REPS:-5}"; DATA="${DATA:-C:/Users/$USERNAME/sosd_data}"
+TAG="${1:-${TAG:-ryzen-win}}"; EXTRA="${EXTRA:-}"; TRIALS="${TRIALS:-3}"; REPS="${REPS:-5}"; DATA="${DATA:-C:/Users/$USERNAME/sosd_data}"
 RUN="$W/runs/$(date +%Y%m%d-%H%M%S)-$TAG"
 ps () { powershell.exe -NoProfile -Command "$1" 2>/dev/null | tr -d '\r'; }
 power=$(ps '(Get-CimInstance Win32_Battery).BatteryStatus')
@@ -33,13 +35,13 @@ g++ $FLAGS -w -I "$TP/PGM-index/include" -I "$TP/RadixSpline/include" -I "$TP/st
   echo "pinning: logical CPU 0, high priority class (--pin)"
   echo "data: SOSD 200M uint64 from Harvard Dataverse doi:10.7910/DVN/JGVF9A; md5 of the unpacked files:"
   sed 's/^/  /' "$DATA/md5_uncompressed.txt" 2>/dev/null || echo "  (md5_uncompressed.txt not found)"
-  echo "args: --pin --reps $REPS, trials $TRIALS"
+  echo "args: --pin --reps $REPS $EXTRA, trials $TRIALS"
   echo "note: other applications (browser, editor) were open during the run"
 } > "$RUN/machine.txt"
 cat "$RUN/machine.txt"
 for t in $(seq 1 "$TRIALS"); do
   echo "trial $t ($(date +%H:%M))"
-  "$W/build/wp12_bench.exe" "$RUN/trial$t.csv" --data "$DATA" --pin --reps "$REPS" 2> "$RUN/trial$t.log"
+  "$W/build/wp12_bench.exe" "$RUN/trial$t.csv" --data "$DATA" --pin --reps "$REPS" $EXTRA 2> "$RUN/trial$t.log"
 done
 echo "power at end: $(ps '(Get-CimInstance Win32_Battery).BatteryStatus')" >> "$RUN/machine.txt"
 echo "done: $RUN"

@@ -114,10 +114,13 @@ def main():
         print("| %s | %s |" % (NAMES[idx], " | ".join(cells)))
     print("\nLearned vs non-learned (best of each family), mean ns:")
     for ds in datasets:
-        bl = min((best(rows, ds, i) for i in LEARNED), key=lambda r: r["mean_ns"])
-        bn = min((best(rows, ds, i) for i in NONLEARNED), key=lambda r: r["mean_ns"])
-        bs = best(rows, ds, "binary_search")
-        orc = best(rows, ds, "oracle")
+        cand_l = [r for r in (best(rows, ds, i) for i in LEARNED) if r]
+        cand_n = [r for r in (best(rows, ds, i) for i in NONLEARNED) if r]
+        bs, orc = best(rows, ds, "binary_search"), best(rows, ds, "oracle")
+        if not (cand_l and cand_n and bs and orc):
+            print("  %-5s (subset run: comparison skipped)" % DS[ds]); continue
+        bl = min(cand_l, key=lambda r: r["mean_ns"])
+        bn = min(cand_n, key=lambda r: r["mean_ns"])
         print("  %-5s best learned %s %s %.1f | best non-learned %s %s %.1f | vs non-learned %.2fx | vs std %.2fx | "
               "oracle %.1f (%.1fx below learned) | p99 learned %.0f vs non-learned %.0f" % (
                   DS[ds], bl["index"], bl["config"], bl["mean_ns"], bn["index"], bn["config"], bn["mean_ns"],
