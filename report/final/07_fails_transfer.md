@@ -1,0 +1,19 @@
+## 7 Where it fails, and transfer
+
+**Hard data and outliers.** The learned lead depends on the data (Table 3). The keys of books and wiki follow smooth curves, and RadixSpline wins clearly. osm is hard to model: RadixSpline needs 144 MB to beat the tuned search, by only 1.16×. On fb two learned indexes fail. The RMI's average search window is 2^19 keys at five of its six sizes, and it is barely faster than `std::lower_bound` (705 vs 749 ns). RadixSpline does little better (547 ns). The cause is 20 keys out of 200M. Of fb's keys, 99.9999% are below 2^37, but 20 lie between 2^40 and 2^64. The RMI's root model is a least-squares line, and these few keys pull it almost flat, so nearly every key lands in one leaf. RadixSpline's table splits the whole key range by prefix, so nearly every key lands in one bucket. We ran an ablation: fb with and without the 20 keys, 3 trials each, back to back. Removing them makes the RMI 3.2× faster (733 to 228 ns) and RadixSpline 2.7× faster (599 to 218 ns). `std::lower_bound` and the PGM-index, which the outliers cannot affect, were 11 to 15% slower in the second run, so the true gains are, if anything, larger. Relative to `std::lower_bound`, the cleaned RadixSpline (4.3×) would beat the Eytzinger layout (2.8×), so fb is lost to 0.00001% of its keys. The PGM-index fits segments of bounded error wherever the keys lie, so it is the robust choice.
+
+**The worst lookups.** Timed one at a time, the best PGM-index has a p99 of 711 to 1,132 ns, below the tuned search's on books and wiki and at most 18% above it elsewhere (Figure 1). The RMI's tail is much worse than its mean. On wiki its mean is close to RadixSpline's (126 vs 121 ns), but its p99 is 1,503 ns: 1.9× RadixSpline's, and worse than the B+tree's (1,072 ns). The RMI bounds its error only per leaf, so a few leaves with wide windows hold its slowest lookups. A system with a latency target should prefer an index that bounds the error of every segment.
+
+**Small data.** While the keys fit in cache, the learned index loses to a tuned search. On synthetic keys a branchless binary search or the Eytzinger layout beats the RMI by 1.1 to 3.6× up to 1M keys, and on lognormal keys up to 10M (Section 6 explains why).
+
+**Changing data and other queries.** On the Apple laptop we ran ALEX, the updatable learned index, against the B+tree and two PGM-index variants on 10M-key samples (median of 3 trials):
+
+- **Hard data.** With no inserts, ALEX's lead over the B+tree falls from 6.2× on books to 1.9× on osm.
+- **Inserts.** At 90% inserts its lead falls to 1.9 to 2.5×, and on osm the two tie (5.7 vs 5.5 M operations/s). The dynamic PGM-index, a different learned design, is then the fastest on three of four datasets.
+- **Range scans.** For 1000-key scans, a static PGM-index over a plain array is 1.7× faster than ALEX, and 2.8× faster on osm. ALEX's gapped arrays leave empty slots that a scan must skip.
+
+![Figure 3](figures/objective5/fig5_2_rmi_speedup.png)
+
+**Figure 3.** RMI speedup over binary search on three laptops, synthetic keys, no retuning. Above 1, the learned index is faster.
+
+**Transfer to other CPUs.** We ran the same RMI and binary search on three laptops without retuning (Figure 3). On all three, the RMI's lead grows once the keys exceed the cache. At 100M uniform keys it is 6.5× on the AMD, 9.4× on the Intel and 8.6× on the Apple M6. The Intel gains most because its slow main memory hurts binary search's chain of misses more than the RMI's few misses: from 10M keys on, its binary search is 2.9 to 3.2× slower than the AMD's, but its RMI only 1.6 to 2.4× slower. Transfer can also fail. On the M6, with lognormal keys that fit in cache, the RMI is 5% slower than binary search, while on both x86 laptops it is 1.4 to 2.1× faster. The same index and data can win or lose depending on the processor.
