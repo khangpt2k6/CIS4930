@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RMI
+read 50000000 values from ./data/fb_50M_uint64 in 254 ms (196.85 M values/s)
+data is unique
+read 1000000 values from ./data/fb_50M_uint64_equality_lookups_1M in 8 ms (125 M values/s)
+RESULT: RMI,0,264.723,212.358,233.804,224.8,259.632,249.01,188.421,242.913,235.056,197.062,220.79,204.716,214.702,232.921,301.963,242.425,224.519,201.394,211.399,189.6,251.311,259.229,240.563,224.083,220.795,255.292,208.653,241.265,243.242,243.175,294.36,402653200,0,BinarySearch

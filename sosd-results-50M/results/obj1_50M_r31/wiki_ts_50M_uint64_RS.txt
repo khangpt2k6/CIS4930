@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RS
+read 50000000 values from ./data/wiki_ts_50M_uint64 in 270 ms (185.185 M values/s)
+data contains duplicates
+read 1000000 values from ./data/wiki_ts_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: RS,10,248.128,257.816,236.061,275.768,289.372,257.057,253.12,288.595,256.899,262.121,223.923,283.49,281.697,248.555,262.009,339.155,214.359,260.553,264.66,300.057,278.571,273.949,312.05,291.264,263.559,259.739,291.696,274.182,281.808,349.881,240.771,353903256,1026801992,BinarySearch

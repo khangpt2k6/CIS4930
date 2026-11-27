@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RS
+read 50000000 values from ./data/fb_50M_uint64 in 286 ms (174.825 M values/s)
+data is unique
+read 1000000 values from ./data/fb_50M_uint64_equality_lookups_1M in 13 ms (76.9231 M values/s)
+RESULT: RS,10,514.273,509.497,500.44,512.398,485.948,501.735,521.361,531.451,495.766,517.146,486.456,502.733,537.199,561.933,484.206,522.147,489.569,537.778,550.934,526.835,467.51,525.633,501.014,541.8,550.425,545.717,534.8,524.559,489.543,508.475,544.385,718937604,988876017,BinarySearch

@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BTree
+read 50000000 values from ./data/osm_cellids_50M_uint64 in 336 ms (148.81 M values/s)
+data is unique
+read 1000000 values from ./data/osm_cellids_50M_uint64_equality_lookups_1M in 6 ms (166.667 M values/s)
+RESULT: BTree,32,567.283,720.755,563.796,571.986,581.521,584.07,598.284,642.442,544.355,594.574,569.165,594.382,609.329,560.119,580.977,500.112,590.982,474.21,587.578,562.339,529.614,607.235,539.751,610.165,455.364,566.567,517.491,569.751,527.665,574.978,498.849,29004872,24696038,BinarySearch

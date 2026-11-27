@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BTree
+read 50000000 values from ./data/fb_50M_uint64 in 250 ms (200 M values/s)
+data is unique
+read 1000000 values from ./data/fb_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: BTree,32,484.591,501.157,592.829,582.766,601.364,510.904,622.572,520.676,585.806,606.452,613.13,639.078,570.022,562.111,555.661,546.896,606.408,531.549,549.979,586.507,607.814,604.42,567.467,537.058,575.674,547.782,506.688,601.611,522.605,551.159,566.316,29004872,16715795,BinarySearch

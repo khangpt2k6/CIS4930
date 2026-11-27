@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BS
+read 50000000 values from ./data/wiki_ts_50M_uint64 in 362 ms (138.122 M values/s)
+data contains duplicates
+read 1000000 values from ./data/wiki_ts_50M_uint64_equality_lookups_1M in 21 ms (47.619 M values/s)
+RESULT: BinarySearch,0,905.398,859.837,1174.88,1255.18,991.249,992.295,996.828,928.635,980.962,852.897,951.453,952.731,990.67,854.088,888.073,879.296,960.09,992.271,869.137,990.609,1000.38,892.787,1035.16,968.355,898.312,881.948,851.313,858.421,832.577,878.632,798.96,0,0,BinarySearch

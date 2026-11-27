@@ -1,0 +1,103 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 00436f5..bb26a73 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -29,7 +29,7 @@ set(SOURCE_FILES util.h)
+ file(GLOB_RECURSE RMI_SOURCES "competitors/rmi/*.cpp")
+ file(GLOB_RECURSE BENCH_SOURCES "benchmarks/*.cc")
+ 
+-if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 10.0)
++if (TRUE)
+     # FIXME cannot link with g++-9
+     add_definitions(-DDISABLE_FST=1)
+     list(REMOVE_ITEM BENCH_SOURCES "${CMAKE_SOURCE_DIR}/benchmarks/benchmark_fst.cc")
+diff --git a/benchmark.h b/benchmark.h
+index aae5ea3..df1de6a 100644
+--- a/benchmark.h
++++ b/benchmark.h
+@@ -84,6 +84,7 @@ class Benchmark {
+     lookups_ = util::load_data<EqualityLookup<KeyType>>(lookups_filename_);
+ 
+     // Create the data for the index (key -> position).
++    index_data_.reserve(data_.size());
+     for (uint64_t pos = 0; pos < data_.size(); pos++) {
+       index_data_.push_back((KeyValue<KeyType>){data_[pos].key, pos});
+     }
+diff --git a/benchmarks/benchmark_rmi.cc b/benchmarks/benchmark_rmi.cc
+index a3021b8..c5778e4 100644
+--- a/benchmarks/benchmark_rmi.cc
++++ b/benchmarks/benchmark_rmi.cc
+@@ -49,15 +49,19 @@ template <template <typename> typename Searcher>
+ void benchmark_32_rmi(sosd::Benchmark<uint32_t, Searcher>& benchmark,
+                       bool pareto, const std::string& filename) {
+   run_rmi_binary_pareto(uint32, books_200M);
+-  run_rmi_binary_pareto(uint32, normal_200M);
+-  run_rmi_binary_pareto(uint32, lognormal_200M);
+-  run_rmi_binary_pareto(uint32, uniform_dense_200M);
+-  run_rmi_binary_pareto(uint32, uniform_sparse_200M);
++//   run_rmi_binary_pareto(uint32, normal_200M);
++//   run_rmi_binary_pareto(uint32, lognormal_200M);
++//   run_rmi_binary_pareto(uint32, uniform_dense_200M);
++//   run_rmi_binary_pareto(uint32, uniform_sparse_200M);
+ }
+ 
+ template <template <typename> typename Searcher>
+ void benchmark_64_rmi(sosd::Benchmark<uint64_t, Searcher>& benchmark,
+                       bool pareto, const std::string& filename) {
++  run_rmi_binary_pareto(uint64, fb_50M);
++  run_rmi_binary_pareto(uint64, osm_cellids_50M);
++  run_rmi_binary_pareto(uint64, wiki_ts_50M);
++  run_rmi_binary_pareto(uint64, books_50M);
+   run_rmi_binary_pareto(uint64, fb_200M);
+   run_rmi_binary_pareto(uint64, osm_cellids_200M);
+   run_rmi_binary_pareto(uint64, wiki_ts_200M);
+@@ -71,10 +75,10 @@ void benchmark_64_rmi(sosd::Benchmark<uint64_t, Searcher>& benchmark,
+   run_rmi_binary_pareto(uint64, books_600M);
+   run_rmi_binary_pareto(uint64, books_800M);
+ 
+-  run_rmi_binary_pareto(uint64, normal_200M);
+-  run_rmi_binary_pareto(uint64, lognormal_200M);
+-  run_rmi_binary_pareto(uint64, uniform_dense_200M);
+-  run_rmi_binary_pareto(uint64, uniform_sparse_200M);
++//   run_rmi_binary_pareto(uint64, normal_200M);
++//   run_rmi_binary_pareto(uint64, lognormal_200M);
++//   run_rmi_binary_pareto(uint64, uniform_dense_200M);
++//   run_rmi_binary_pareto(uint64, uniform_sparse_200M);
+ }
+ 
+ INSTANTIATE_TEMPLATES_RMI(benchmark_32_rmi, uint32_t);
+diff --git a/competitors/rs.h b/competitors/rs.h
+index 6f9af94..6bfa395 100644
+--- a/competitors/rs.h
++++ b/competitors/rs.h
+@@ -80,7 +80,7 @@ class RS : public Competitor {
+     } else if (dataset == "books_200M_uint32") {
+       configs = {{14, 250}, {14, 250}, {16, 190}, {18, 80}, {18, 50},
+                  {22, 20},  {22, 9},   {22, 8},   {24, 3},  {28, 2}};
+-    } else if (dataset == "books_200M_uint64") {
++    } else if ((dataset == "books_200M_uint64" || dataset == "books_100M_uint64" || dataset == "books_50M_uint64")) {
+       configs = {{12, 380}, {16, 170}, {16, 110}, {20, 50}, {20, 30},
+                  {22, 20},  {22, 10},  {24, 3},   {26, 3},  {28, 2}};
+     } else if (dataset == "books_400M_uint64") {
+@@ -92,10 +92,10 @@ class RS : public Competitor {
+     } else if (dataset == "books_800M_uint64") {
+       configs = {{18, 320}, {18, 320}, {18, 200}, {22, 80}, {22, 60},
+                  {22, 20},  {24, 9},   {26, 3},   {28, 3},  {28, 3}};
+-    } else if (dataset == "fb_200M_uint64") {
++    } else if ((dataset == "fb_200M_uint64" || dataset == "fb_100M_uint64" || dataset == "fb_50M_uint64")) {
+       configs = {{8, 140}, {8, 140}, {8, 140}, {8, 140}, {10, 90},
+                  {22, 90}, {24, 70}, {26, 80}, {26, 7},  {28, 80}};
+-    } else if (dataset == "osm_cellids_200M_uint64") {
++    } else if ((dataset == "osm_cellids_200M_uint64" || dataset == "osm_cellids_100M_uint64" || dataset == "osm_cellids_50M_uint64")) {
+       configs = {{20, 160}, {20, 160}, {20, 160}, {20, 160}, {20, 80},
+                  {24, 40},  {24, 20},  {26, 8},   {26, 3},   {28, 2}};
+     } else if (dataset == "osm_cellids_400M_uint64") {
+@@ -107,7 +107,7 @@ class RS : public Competitor {
+     } else if (dataset == "osm_cellids_800M_uint64") {
+       configs = {{22, 190}, {22, 190}, {22, 190}, {22, 190}, {24, 190},
+                  {26, 30},  {26, 20},  {28, 7},   {28, 5},   {28, 1}};
+-    } else if (dataset == "wiki_ts_200M_uint64") {
++    } else if ((dataset == "wiki_ts_200M_uint64" || dataset == "wiki_ts_100M_uint64" || dataset == "wiki_ts_50M_uint64")) {
+       configs = {{14, 100}, {14, 100}, {16, 60}, {18, 20}, {20, 20},
+                  {20, 9},   {20, 5},   {22, 3},  {26, 2},  {26, 1}};
+     } else {

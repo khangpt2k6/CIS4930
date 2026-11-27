@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RS
+read 50000000 values from ./data/osm_cellids_50M_uint64 in 224 ms (223.214 M values/s)
+data is unique
+read 1000000 values from ./data/osm_cellids_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: RS,10,378.576,341.791,386.578,335.917,412.429,402.836,303.636,257.92,329.624,350.823,355.883,349.842,352.294,329.798,350.676,390.762,283.63,298.073,375.366,356.261,325.197,359.066,289.816,328.649,340.162,361.364,367.145,361.186,339.456,379.487,334.105,884700944,1266825798,BinarySearch

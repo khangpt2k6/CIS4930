@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BTree
+read 50000000 values from ./data/books_50M_uint64 in 239 ms (209.205 M values/s)
+data is unique
+read 1000000 values from ./data/books_50M_uint64_equality_lookups_1M in 8 ms (125 M values/s)
+RESULT: BTree,32,489.164,642.664,607.093,646.83,601.806,642.031,549.812,624.306,495.256,639.727,590.312,633.826,584.307,520.437,578.231,639.804,611.849,599.867,601.22,581.012,561.453,584.53,545.372,565.702,482.924,591.244,635.456,556.218,543.06,563.412,620.799,29004872,26700385,BinarySearch

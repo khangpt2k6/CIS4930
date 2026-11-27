@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RobinHash
+read 50000000 values from ./data/wiki_ts_50M_uint64 in 258 ms (193.798 M values/s)
+data contains duplicates
+read 1000000 values from ./data/wiki_ts_50M_uint64_equality_lookups_1M in 10 ms (100 M values/s)
+RESULT: RobinHash,0,138.636,97.1829,99.1954,116.764,111.918,97.7693,99.9153,109.411,94.5841,103.431,120.176,121.082,161.108,137.3,129.177,83.0729,89.6747,126.797,140.471,167.233,142.644,178.916,159.814,141.51,124.954,118.929,167.155,119.469,122.06,143.095,120.223,2147483648,3131158832,BinarySearch

@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RobinHash
+read 50000000 values from ./data/fb_50M_uint64 in 248 ms (201.613 M values/s)
+data is unique
+read 1000000 values from ./data/fb_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: RobinHash,0,407.39,176.675,250.035,236.478,256.843,236.42,240.438,233.631,248.218,229.93,210.104,243.938,239.033,169.695,233.498,236.429,239.152,176.518,204.89,98.1319,167.886,215.738,213.104,152.787,107.399,122.842,207.367,178.087,208.772,143.706,140.723,2147483648,5033834850,BinarySearch

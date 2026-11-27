@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BTree
+read 50000000 values from ./data/wiki_ts_50M_uint64 in 243 ms (205.761 M values/s)
+data contains duplicates
+read 1000000 values from ./data/wiki_ts_50M_uint64_equality_lookups_1M in 6 ms (166.667 M values/s)
+RESULT: BTree,32,813.222,739.827,733.212,711.567,668.45,681.296,593.725,627.4,576.41,553.552,649.129,596.885,648.866,629.255,633.522,672.678,669.735,556.108,767.918,688.75,772.255,828.325,821.055,702.378,655.744,579.341,635.77,606.875,635.573,563.762,590.037,29004872,33947013,BinarySearch

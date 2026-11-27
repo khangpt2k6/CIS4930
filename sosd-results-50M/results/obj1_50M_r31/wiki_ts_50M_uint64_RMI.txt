@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RMI
+read 50000000 values from ./data/wiki_ts_50M_uint64 in 277 ms (180.505 M values/s)
+data contains duplicates
+read 1000000 values from ./data/wiki_ts_50M_uint64_equality_lookups_1M in 8 ms (125 M values/s)
+RESULT: RMI,0,182.9,198.355,199.449,225.195,209.161,187.217,194.415,187.227,191.696,152.835,256.356,200.389,210.269,191.104,177.85,144.007,176.957,179.606,191.657,198.363,225.651,195.071,177.407,185.151,190.984,162.931,194.914,203.23,157.955,195.739,201.404,402653216,0,BinarySearch

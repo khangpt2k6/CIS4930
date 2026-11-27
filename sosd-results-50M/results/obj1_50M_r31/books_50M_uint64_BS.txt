@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BS
+read 50000000 values from ./data/books_50M_uint64 in 515 ms (97.0874 M values/s)
+data is unique
+read 1000000 values from ./data/books_50M_uint64_equality_lookups_1M in 29 ms (34.4828 M values/s)
+RESULT: BinarySearch,0,1462.51,1506.08,1428.06,1265.15,1272.62,1302.28,1262.78,1312.21,1273.81,1288.75,1202.54,1121.65,1163.68,1149.32,1151.82,1083.47,958.566,1106.97,997.028,1115.58,1096.24,1080.79,1142.28,1040.83,1050.9,1050.04,930.314,1092.36,1090.02,1122.49,1122.88,0,0,BinarySearch

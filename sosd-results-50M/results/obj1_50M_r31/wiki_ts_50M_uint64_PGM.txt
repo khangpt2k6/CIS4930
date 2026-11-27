@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching PGM
+read 50000000 values from ./data/wiki_ts_50M_uint64 in 298 ms (167.785 M values/s)
+data contains duplicates
+read 1000000 values from ./data/wiki_ts_50M_uint64_equality_lookups_1M in 6 ms (166.667 M values/s)
+RESULT: PGM,16,315.297,248.619,298.593,266.624,267.753,347.241,297.954,265.768,262.115,325.655,288.615,287.174,345.338,308.131,253.603,307.497,289.177,280.477,266.914,312.009,249.017,293.74,264.091,276.538,272.244,282.238,259.092,241.821,243.157,256.666,267.978,751600,1907052241,BinarySearch

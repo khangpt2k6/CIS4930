@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BS
+read 50000000 values from ./data/osm_cellids_50M_uint64 in 338 ms (147.929 M values/s)
+data is unique
+read 1000000 values from ./data/osm_cellids_50M_uint64_equality_lookups_1M in 32 ms (31.25 M values/s)
+RESULT: BinarySearch,0,833.701,947.677,895.308,1010.14,952.089,900.13,947.013,927.906,928.281,890.066,935.323,878.551,965.278,842.165,962.78,910.798,920.392,939.635,896.903,944.998,975.711,971.05,1004.28,1030.65,951.579,1011.12,919.383,973.936,967.321,891.155,817.75,0,0,BinarySearch

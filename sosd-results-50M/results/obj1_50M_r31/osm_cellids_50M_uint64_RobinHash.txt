@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RobinHash
+read 50000000 values from ./data/osm_cellids_50M_uint64 in 233 ms (214.592 M values/s)
+data is unique
+read 1000000 values from ./data/osm_cellids_50M_uint64_equality_lookups_1M in 9 ms (111.111 M values/s)
+RESULT: RobinHash,0,314.41,153.407,180.771,130.381,107.606,200.089,151.987,104.241,136.506,139.056,153.35,186.397,101.837,151.653,121.481,102.725,106.57,104.696,102.282,102.323,143.187,202.773,173.596,172.104,110.689,207.353,123.823,171.341,199.676,201.519,204.415,2147483648,6603574560,BinarySearch

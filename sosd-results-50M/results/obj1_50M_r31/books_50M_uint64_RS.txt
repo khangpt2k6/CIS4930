@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RS
+read 50000000 values from ./data/books_50M_uint64 in 257 ms (194.553 M values/s)
+data is unique
+read 1000000 values from ./data/books_50M_uint64_equality_lookups_1M in 14 ms (71.4286 M values/s)
+RESULT: RS,10,450.837,416.991,316.717,348.724,412.891,376.454,373.606,390.405,334.917,293.869,373.044,401.863,385.365,405.054,495.276,410.872,388.202,408.361,409.475,422.185,456.289,404.912,411.033,407.163,369.879,397.57,403.795,413.743,418.528,325.036,340.392,629170920,1197936954,BinarySearch

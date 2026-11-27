@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching BS
+read 50000000 values from ./data/fb_50M_uint64 in 338 ms (147.929 M values/s)
+data is unique
+read 1000000 values from ./data/fb_50M_uint64_equality_lookups_1M in 14 ms (71.4286 M values/s)
+RESULT: BinarySearch,0,932.121,946.793,977.054,933.264,926.697,911.952,932.477,976.569,997.266,1032.75,969.534,947.969,1001.1,932.508,901.553,924.437,904.83,906.507,887.653,925.916,852.625,889.502,936.471,968.064,900.435,920.812,1020.04,1022.51,837.033,867.137,861.004,0,0,BinarySearch

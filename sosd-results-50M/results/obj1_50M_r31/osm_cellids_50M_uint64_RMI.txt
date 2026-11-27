@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RMI
+read 50000000 values from ./data/osm_cellids_50M_uint64 in 267 ms (187.266 M values/s)
+data is unique
+read 1000000 values from ./data/osm_cellids_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: RMI,0,225.917,315.713,342.183,326.799,273.601,237.394,289.781,298.223,337.787,296.485,326.238,309.861,251.689,241.372,302.904,277.884,336.24,317.118,284.485,280.323,296.641,278.154,332.496,322.275,315.921,314.425,262.193,300.291,304.808,264.704,299.353,402653216,0,BinarySearch

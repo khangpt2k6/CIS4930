@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching PGM
+read 50000000 values from ./data/fb_50M_uint64 in 233 ms (214.592 M values/s)
+data is unique
+read 1000000 values from ./data/fb_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: PGM,16,403.819,388.586,418.065,410.625,466.934,369.833,451.97,428.475,398.899,434.55,402.11,432.775,392.724,392.545,478.208,422.348,411.901,399.561,393.655,435.917,405.563,367.201,397.132,395.98,377.591,355.66,386.081,366.811,394.746,418.348,361.492,10453680,2397853827,BinarySearch

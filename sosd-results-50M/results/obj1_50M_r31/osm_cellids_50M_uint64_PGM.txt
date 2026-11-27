@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching PGM
+read 50000000 values from ./data/osm_cellids_50M_uint64 in 268 ms (186.567 M values/s)
+data is unique
+read 1000000 values from ./data/osm_cellids_50M_uint64_equality_lookups_1M in 7 ms (142.857 M values/s)
+RESULT: PGM,16,396.047,404.482,398.855,395.567,355.037,415.868,394.98,423.017,392.116,429.471,402.214,389.665,394.146,433.865,395.275,401.967,418.398,383.343,378.075,374.544,371.78,390.93,377.314,389.631,413.022,426.843,351.165,379.203,391.364,414.711,385.446,6635140,2716244347,BinarySearch

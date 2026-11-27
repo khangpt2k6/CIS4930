@@ -1,0 +1,7 @@
+Repeating lookup code 31 time(s).
+Using 1 thread(s).
+Only executing indexes matching RMI
+read 50000000 values from ./data/books_50M_uint64 in 271 ms (184.502 M values/s)
+data is unique
+read 1000000 values from ./data/books_50M_uint64_equality_lookups_1M in 11 ms (90.9091 M values/s)
+RESULT: RMI,0,199.298,186.142,196.215,208.613,221.846,191.726,193.821,177.707,253.71,220.138,221.713,217.675,249.357,252.987,210.56,218.903,225.433,226.027,232.64,166.185,207.168,173.647,156.967,176.883,223.129,171.075,157.809,197.675,155.689,211.678,184.655,402653216,0,BinarySearch
