@@ -114,17 +114,44 @@ s.addNotes('Source: sosd-arm64/runs/20261125-100608-release/summary/lookup_paret
 }
 
 
-pres.addSection({ title: 'Objective 3: Hardware counters' });
-placeholderSlide('Objective 3: Hardware counters', 'Objective 3', 'LLC misses, branch misses and instructions per lookup per index, at an in-cache size and at 200M keys.', 'Needs native Linux (perf). Not measurable on the Apple laptop.');
-placeholderSlide('Objective 3: Hardware counters', 'Objective 3', 'How the counters explain the Objective 1 and 5 gaps (e.g. misses per lookup vs latency).', 'Objective 1 latencies; Objective 5 in-cache vs out-of-cache results.');
-
-pres.addSection({ title: 'Objective 4: Where learned indexes fall short' });
 const title = (s, t, sub) => { s.addText(t, { placeholder: 'title' }); s.addText(sub, { placeholder: 'sub' }); };
 const stat = (s, x, y, big, small) => {
   s.addText(big, { x, y, w: 2.9, h: 0.6, fontFace: F, fontSize: 30, bold: true, color: TEAL, margin: 0, isTextBox: true });
   s.addText(small, { x, y: y + 0.6, w: 2.9, h: 0.75, fontFace: F, fontSize: 12.5, color: INK, margin: 0, valign: 'top', isTextBox: true });
 };
 const foot = (s, t) => s.addText(t, { x: 0.5, y: 6.72, w: 12.3, h: 0.4, fontFace: F, fontSize: 10.5, color: MUTED, margin: 0, isTextBox: true });
+
+// Objective 3 (hardware counters)
+pres.addSection({ title: 'Objective 3: Hardware counters' });
+const SEC3 = 'Objective 3: Hardware counters';
+const FOOT3 = 'AMD Ryzen AI 7 350, Ubuntu 24.04 in WSL2 (a Linux VM), g++ 13 -O3, counters read with perf_event_open around the lookup loop, single thread, AC power. Same keys and 2M queries as Objective 5. Median of 3 trials. All indexes returned identical positions.';
+{ const s = pres.addSlide({ masterName: 'CONTENT', sectionTitle: SEC3 });
+  title(s, 'In cache, branch misses decide; in memory, DRAM waits do',
+    'Cycles per lookup vs the counter that tracks them: 100K keys (fits in L2) and 100M keys (main memory)');
+  s.addImage({ path: FIG + 'wp3_in_vs_out_of_cache.png', x: 0.5, y: 1.55, w: 8.9, h: 8.9 * 736 / 1760, altText: 'Cycles per lookup versus branch misses at 100K keys and versus DRAM fills at 100M keys, for six indexes on uniform and lognormal keys' });
+  stat(s, 9.85, 1.65, '29 cycles', 'per branch miss in cache (r = 0.97 over 6 indexes and 2 datasets)');
+  stat(s, 9.85, 3.15, '4.5×', 'branchless binary search over std::lower_bound at 100K keys (26 vs 118 ns)');
+  stat(s, 9.85, 4.65, '1.5×', 'std::lower_bound over the branchless version at 100M keys, despite 5× the DRAM fills');
+  s.addText([
+    { text: 'In cache there is no DRAM traffic, and latency follows branch misses. The RMI’s in-cache lead over binary search is a lead over branch misses.', options: { bullet: true, breakLine: true } },
+    { text: 'In memory, what counts is how many misses a lookup waits for one after another. Fills on guessed paths overlap and cost little.', options: { bullet: true } },
+  ], { x: 0.5, y: 5.45, w: 8.9, h: 1.2, fontFace: F, fontSize: 14, color: INK, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true });
+  foot(s, FOOT3);
+  s.addNotes('Source: wp3/runs/20261126-205955-ryzen-wsl/summary/wp3_summary.csv (report Tables 3.2 and 3.3). Fit at 100K keys: cycles = 92 + 29 x branch misses, r = 0.97, 12 points (6 indexes x 2 datasets, best RMI). std::lower_bound mispredicts 9.4 of 17 comparisons; branchless search 0 misses, 79 vs 346 cycles. At 100K the branchless search beats the best RMI: 26.1 vs 37.7 ns uniform, 25.9 vs 82.8 ns lognormal. At 1M (in L3) the RMI wins again: 53 vs 97 ns uniform. At 100M: std::lower_bound 707 ns with 43.5 DRAM fills (mostly on discarded guessed paths); branchless 1,094 ns with 8.8 fills that each wait on the previous one. Calibration (pointer chase) confirms each fill event in the VM. Caveats: WSL2 VM, clock 2.7-3.3 GHz, latency trial spread median 1.18x; counts are stable (branch misses within 4%).'); }
+
+{ const s = pres.addSlide({ masterName: 'CONTENT', sectionTitle: SEC3 });
+  title(s, 'Learned indexes make the fewest trips to main memory',
+    'Per-lookup counters vs key count, uniform and lognormal keys, AMD Ryzen AI 7 350 (Linux VM)');
+  s.addImage({ path: FIG + 'wp3_counters_vs_keys.png', x: 0.5, y: 1.5, w: 8.9, h: 8.9 * 1152 / 2400, altText: 'Latency, branch misses, DRAM fills and page walks per lookup versus number of keys for six indexes' });
+  stat(s, 9.85, 1.65, '2.3 vs 8.3', 'DRAM fills per lookup at 100M uniform keys: RMI vs STX B+tree');
+  stat(s, 9.85, 3.15, '8.6×', 'RMI over the B+tree at 100M uniform keys (96 vs 832 ns)');
+  stat(s, 9.85, 4.65, '6.2 → 32.9', 'RMI DRAM fills on 100M lognormal keys as the model shrinks from 37 MB to 0.6 MB');
+  s.addText('A less accurate model means a wider last-mile search and more DRAM fills. Page walks per lookup: about 1 for the learned indexes, 27 to 29 for std::lower_bound.',
+    { x: 0.5, y: 5.85, w: 8.9, h: 0.8, fontFace: F, fontSize: 14, color: INK, margin: 0, valign: 'top', isTextBox: true });
+  foot(s, FOOT3);
+  s.addNotes('At 100M keys, DRAM fills per lookup (uniform/lognormal): RMI 2.3/6.2, RadixSpline 3.2/3.3, PGM 5.3/5.3, B+tree 8.3/8.5, branchless binary search 8.8/9.6, std::lower_bound 43.5/41.0. Latency ns: RMI 96/174, RadixSpline 128/273, PGM 228/321, B+tree 832/807, branchless 1,094/1,081, std::lower_bound 707/740. RMI on lognormal 100M: 1.5M leaves (37 MB) window 2^6.6, 6.2 fills, 174 ns; 24K leaves (0.6 MB) window 2^11.9, 32.9 fills, 437 ns. RadixSpline on lognormal: few fills (3.3) but 9.2 branch misses and 275 instructions. Open question for Objective 5: the M6 binary search at 100K (25.5 ns) matches our branchless search (26.1 ns); check whether Apple clang compiled std::lower_bound without a branch (otool -tv, look for csel).'); }
+
+pres.addSection({ title: 'Objective 4: Where learned indexes fall short' });
 const FOOT = 'Apple M6, -O3, single thread, median of 3 trials, AC power. books and osm from SOSD, 10M distinct keys sampled from 800M. ALEX ported to ARM64 (42/42 unit tests pass). All indexes returned identical checksums.';
 
 // Slide 1: hard data + inserts
@@ -190,12 +217,14 @@ s.addNotes('Speedup = binary search / best RMI. Uniform Ryzen 3.3, 3.8, 5.7, 6.4
 pres.addSection({ title: 'Conclusion' });
 { const s = pres.addSlide({ masterName: 'CONTENT', sectionTitle: 'Conclusion' });
   s.addText('Learned indexes still win, but only under the right conditions', { placeholder: 'title' });
-  s.addText('Conclusion (draft: Objectives 4–5 in; Objectives 1–3 to be added)', { placeholder: 'sub' });
+  s.addText('Conclusion (draft: Objectives 3-5 in; Objectives 1-2 to be added)', { placeholder: 'sub' });
   card(s, 0.5, 1.65, 6.0, 3.0, 'When they win', 'Data larger than the cache: RMI beats binary search by 6.5× (x86) and 8.6× (ARM) at 100M uniform keys.\nRead-mostly, easy-to-model data: ALEX is 4.3–6.2× faster than a B+tree.');
   card(s, 6.85, 1.65, 6.0, 3.0, 'When they do not', 'Hard data (osm): ALEX’s lead falls to 1.9×, and it ties the B+tree at 90% inserts.\nIn cache on the M6: RMI is 5% slower than binary search on lognormal keys.\nLong scans and bulk loads favour simpler structures.');
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 4.9, w: 12.35, h: 1.7, fill: { color: 'FAFAFA' }, line: { color: 'AAAAAA', width: 1, dashType: 'dash' } });
-  s.addText('[TODO: Objectives 1–3] Add the lookup, memory and hardware-counter conclusions here, and the answer to “do the conclusions of [1] still hold?”', { x: 0.75, y: 5.05, w: 11.9, h: 1.4, fontFace: F, fontSize: 14, italic: true, color: MUTED, margin: 0, valign: 'top', isTextBox: true });
-  s.addNotes('Numbers: report Objective 4 (Tables 4.1–4.3) and Objective 5 (Table 5.1). Keep in sync with the report\'s Conclusion.'); }
+  s.addText([{ text: 'Hardware counters (Objective 3): out of cache, learned indexes need 2 to 6 DRAM fills per lookup and a B+tree 8. In cache, branch misses decide, and a branchless binary search beats the RMI at 100K keys.', options: { color: INK, breakLine: true } },
+             { text: '[TODO: Objectives 1-2] Add the lookup and memory conclusions here, and the answer to “do the conclusions of [1] still hold?”', options: { italic: true, color: MUTED } }],
+    { x: 0.75, y: 5.05, w: 11.9, h: 1.4, fontFace: F, fontSize: 14, paraSpaceAfter: 6, margin: 0, valign: 'top', isTextBox: true });
+  s.addNotes('Numbers: report Objective 3 (Tables 3.2-3.3), Objective 4 (Tables 4.1–4.3) and Objective 5 (Table 5.1). Keep in sync with the report\'s Conclusion.'); }
 { const s = pres.addSlide({ masterName: 'TITLE', sectionTitle: 'Conclusion' });
   s.addText('Questions?', { placeholder: 'title' });
   s.addText('Code, data and results: github.com/khangpt2k6/CIS4930', { placeholder: 'sub' }); }

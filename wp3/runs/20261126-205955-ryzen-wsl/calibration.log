@@ -1,0 +1,4 @@
+calibrate       32 KiB     1.53 ns/step
+calibrate      512 KiB     5.81 ns/step
+calibrate     4096 KiB    17.59 ns/step
+calibrate  1048576 KiB   249.46 ns/step
