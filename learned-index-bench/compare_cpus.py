@@ -34,7 +34,7 @@ def load(path):
         k = (r["dataset"], bucket(int(r["n"])))
         if r["index"] == "binary_search":
             bs[k] = float(r["median_ns"])
-        else:
+        elif r["index"] == "rmi":  # other rows (the --baselines indexes) are summarized by baselines.py
             rmi[k].append((float(r["median_ns"]), int(r["leaves"]), int(r["bytes"])))
     return {k: (bs[k],) + min(rmi[k]) for k in bs}  # (bs_ns, rmi_ns, leaves, bytes)
 

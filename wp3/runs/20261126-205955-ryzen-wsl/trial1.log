@@ -1,0 +1,100 @@
+  uniform   100000 binary_search -                101.60 ns    168.7 instr   9.41 br-miss   0.00 dram  mux 1.000
+  uniform   100000 binary_search_branchless cmov              22.91 ns    151.0 instr   0.00 br-miss   0.00 dram  mux 1.000
+  uniform   100000 rmi           leaves=1562       31.70 ns     73.1 instr   1.60 br-miss   0.00 dram  mux 1.000
+  uniform   100000 rmi           leaves=390        38.10 ns     82.2 instr   2.12 br-miss   0.00 dram  mux 1.000
+  uniform   100000 rmi           leaves=97         44.17 ns     91.4 instr   2.62 br-miss   0.00 dram  mux 1.000
+  uniform   100000 rmi           leaves=24         49.86 ns    100.6 instr   3.16 br-miss   0.00 dram  mux 1.000
+  uniform   100000 pgm           eps=64            69.05 ns    142.4 instr   3.82 br-miss   0.00 dram  mux 1.000
+  uniform   100000 radixspline   bits=18;err=32    54.14 ns    121.6 instr   2.82 br-miss   0.03 dram  mux 1.000
+  uniform   100000 btree         stx-default       75.73 ns    175.9 instr   5.14 br-miss   0.01 dram  mux 1.000
+done uniform n=100000
+  uniform   1000000 binary_search -                164.01 ns    199.5 instr  10.97 br-miss   0.29 dram  mux 1.000
+  uniform   1000000 binary_search_branchless cmov              97.37 ns    175.0 instr   0.00 br-miss   0.37 dram  mux 1.000
+  uniform   1000000 rmi           leaves=15625      53.31 ns     73.0 instr   1.60 br-miss   0.44 dram  mux 1.000
+  uniform   1000000 rmi           leaves=3906       59.65 ns     82.0 instr   2.09 br-miss   0.26 dram  mux 1.000
+  uniform   1000000 rmi           leaves=976        65.02 ns     91.3 instr   2.64 br-miss   0.11 dram  mux 1.000
+  uniform   1000000 rmi           leaves=244        67.54 ns    101.0 instr   3.18 br-miss   0.10 dram  mux 1.000
+  uniform   1000000 pgm           eps=64            98.68 ns    151.3 instr   3.90 br-miss   0.67 dram  mux 1.000
+  uniform   1000000 radixspline   bits=18;err=32    84.70 ns    121.7 instr   2.76 br-miss   0.96 dram  mux 1.000
+  uniform   1000000 btree         stx-default      158.80 ns    211.8 instr   6.09 br-miss   1.65 dram  mux 1.000
+done uniform n=1000000
+  uniform   10000000 binary_search -                500.96 ns    231.5 instr  10.84 br-miss  18.91 dram  mux 1.000
+  uniform   10000000 binary_search_branchless cmov             520.09 ns    207.0 instr   0.01 br-miss   5.13 dram  mux 1.000
+  uniform   10000000 rmi           leaves=156250     68.84 ns     73.0 instr   1.61 br-miss   1.45 dram  mux 1.000
+  uniform   10000000 rmi           leaves=39062      76.11 ns     81.9 instr   2.11 br-miss   1.50 dram  mux 1.000
+  uniform   10000000 rmi           leaves=9765       94.79 ns     91.2 instr   2.59 br-miss   2.07 dram  mux 1.000
+  uniform   10000000 rmi           leaves=2441      113.02 ns    100.6 instr   3.10 br-miss   3.06 dram  mux 1.000
+  uniform   10000000 pgm           eps=64           207.56 ns    183.6 instr   4.12 br-miss   5.00 dram  mux 1.000
+  uniform   10000000 radixspline   bits=18;err=32   117.76 ns    121.8 instr   2.77 br-miss   2.77 dram  mux 1.000
+  uniform   10000000 btree         stx-default      395.67 ns    242.6 instr   7.47 br-miss   5.44 dram  mux 1.000
+done uniform n=10000000
+  uniform   49999998 binary_search -                587.66 ns    253.9 instr  11.63 br-miss  35.56 dram  mux 1.000
+  uniform   49999998 binary_search_branchless cmov             833.73 ns    223.0 instr   0.02 br-miss   8.95 dram  mux 1.000
+  uniform   49999998 rmi           leaves=781249     87.29 ns     73.0 instr   1.62 br-miss   2.17 dram  mux 1.000
+  uniform   49999998 rmi           leaves=195312     92.18 ns     81.9 instr   2.10 br-miss   1.81 dram  mux 1.000
+  uniform   49999998 rmi           leaves=48828      94.52 ns     91.2 instr   2.60 br-miss   2.29 dram  mux 1.000
+  uniform   49999998 rmi           leaves=12207     108.94 ns    100.6 instr   3.12 br-miss   3.42 dram  mux 1.000
+  uniform   49999998 pgm           eps=64           224.35 ns    192.5 instr   4.77 br-miss   5.21 dram  mux 1.000
+  uniform   49999998 radixspline   bits=18;err=32   117.03 ns    122.3 instr   2.85 br-miss   3.14 dram  mux 1.000
+  uniform   49999998 btree         stx-default      561.12 ns    267.6 instr   8.28 br-miss   6.72 dram  mux 1.000
+done uniform n=50000000
+  uniform   99999994 binary_search -                706.84 ns    263.4 instr  11.85 br-miss  43.52 dram  mux 1.000
+  uniform   99999994 binary_search_branchless cmov            1093.89 ns    231.0 instr   0.02 br-miss   8.84 dram  mux 1.000
+  uniform   99999994 rmi           leaves=1562499    93.63 ns     73.0 instr   1.62 br-miss   2.38 dram  mux 1.000
+  uniform   99999994 rmi           leaves=390624    100.35 ns     81.9 instr   2.10 br-miss   2.12 dram  mux 1.000
+  uniform   99999994 rmi           leaves=97656      96.49 ns     91.2 instr   2.58 br-miss   2.36 dram  mux 1.000
+  uniform   99999994 rmi           leaves=24414     124.71 ns    100.6 instr   3.10 br-miss   3.45 dram  mux 1.000
+  uniform   99999994 pgm           eps=64           228.24 ns    194.6 instr   4.66 br-miss   5.29 dram  mux 1.000
+  uniform   99999994 radixspline   bits=18;err=32   127.72 ns    122.8 instr   2.95 br-miss   3.14 dram  mux 1.000
+  uniform   99999994 btree         stx-default      832.02 ns    277.2 instr   8.58 br-miss   8.93 dram  mux 1.000
+done uniform n=100000000
+  lognormal 99996  binary_search -                117.17 ns    168.7 instr   9.42 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  binary_search_branchless cmov              25.88 ns    151.0 instr   0.00 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  rmi           leaves=1562       82.80 ns    122.8 instr   5.10 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  rmi           leaves=390        99.09 ns    153.8 instr   6.53 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  rmi           leaves=97        113.91 ns    170.7 instr   7.33 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  rmi           leaves=24        124.84 ns    182.1 instr   7.90 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  pgm           eps=64            87.81 ns    187.8 instr   4.20 br-miss   0.00 dram  mux 1.000
+  lognormal 99996  radixspline   bits=18;err=32    56.22 ns    126.0 instr   3.29 br-miss   0.01 dram  mux 1.000
+  lognormal 99996  btree         stx-default       82.98 ns    175.9 instr   5.10 br-miss   0.03 dram  mux 1.000
+done lognormal n=100000
+  lognormal 999773 binary_search -                181.97 ns    199.5 instr  10.95 br-miss   0.51 dram  mux 1.000
+  lognormal 999773 binary_search_branchless cmov             122.12 ns    175.0 instr   0.00 br-miss   0.59 dram  mux 1.000
+  lognormal 999773 rmi           leaves=15621      98.92 ns    110.4 instr   4.59 br-miss   0.29 dram  mux 1.000
+  lognormal 999773 rmi           leaves=3905      131.57 ns    133.4 instr   5.84 br-miss   0.28 dram  mux 1.000
+  lognormal 999773 rmi           leaves=976       168.52 ns    158.7 instr   6.98 br-miss   1.53 dram  mux 1.000
+  lognormal 999773 rmi           leaves=244       190.27 ns    188.0 instr   8.45 br-miss   0.27 dram  mux 1.000
+  lognormal 999773 pgm           eps=64           125.31 ns    194.3 instr   4.81 br-miss   0.30 dram  mux 1.000
+  lognormal 999773 radixspline   bits=18;err=32   122.44 ns    150.8 instr   4.15 br-miss   0.41 dram  mux 1.000
+  lognormal 999773 btree         stx-default      159.64 ns    211.8 instr   6.18 br-miss   2.61 dram  mux 1.000
+done lognormal n=1000000
+  lognormal 9980657 binary_search -                443.48 ns    231.5 instr  11.00 br-miss  18.41 dram  mux 1.000
+  lognormal 9980657 binary_search_branchless cmov             504.20 ns    207.0 instr   0.01 br-miss   6.25 dram  mux 1.000
+  lognormal 9980657 rmi           leaves=155947    156.42 ns    104.1 instr   3.90 br-miss   5.90 dram  mux 1.000
+  lognormal 9980657 rmi           leaves=38986     247.82 ns    119.7 instr   4.90 br-miss  11.65 dram  mux 1.000
+  lognormal 9980657 rmi           leaves=9746      299.36 ns    143.2 instr   6.02 br-miss  22.88 dram  mux 1.000
+  lognormal 9980657 rmi           leaves=2436      429.10 ns    172.6 instr   7.28 br-miss  35.97 dram  mux 1.000
+  lognormal 9980657 pgm           eps=64           216.92 ns    202.7 instr   4.85 br-miss   5.07 dram  mux 1.000
+  lognormal 9980657 radixspline   bits=18;err=32   235.27 ns    202.8 instr   6.54 br-miss   3.11 dram  mux 1.000
+  lognormal 9980657 btree         stx-default      474.38 ns    242.6 instr   7.55 br-miss   6.19 dram  mux 1.000
+done lognormal n=10000000
+  lognormal 49527905 binary_search -                680.34 ns    253.8 instr  11.39 br-miss  37.69 dram  mux 1.000
+  lognormal 49527905 binary_search_branchless cmov            1066.93 ns    223.0 instr   0.02 br-miss   7.95 dram  mux 1.000
+  lognormal 49527905 rmi           leaves=773873    154.76 ns    104.6 instr   3.89 br-miss   6.37 dram  mux 1.000
+  lognormal 49527905 rmi           leaves=193468    194.26 ns    115.8 instr   4.58 br-miss  11.23 dram  mux 1.000
+  lognormal 49527905 rmi           leaves=48367     274.12 ns    133.8 instr   5.53 br-miss  20.82 dram  mux 1.000
+  lognormal 49527905 rmi           leaves=12091     419.79 ns    161.0 instr   6.71 br-miss  36.42 dram  mux 1.000
+  lognormal 49527905 pgm           eps=64           255.64 ns    237.7 instr   4.86 br-miss   5.31 dram  mux 1.000
+  lognormal 49527905 radixspline   bits=18;err=32   243.49 ns    264.4 instr   8.78 br-miss   3.21 dram  mux 1.000
+  lognormal 49527905 btree         stx-default      714.87 ns    267.3 instr   8.35 br-miss   8.75 dram  mux 1.000
+done lognormal n=50000000
+  lognormal 98136428 binary_search -                662.43 ns    263.1 instr  11.93 br-miss  40.97 dram  mux 1.000
+  lognormal 98136428 binary_search_branchless cmov            1004.79 ns    231.0 instr   0.02 br-miss   9.63 dram  mux 1.000
+  lognormal 98136428 rmi           leaves=1533381   173.56 ns    104.3 instr   3.85 br-miss   6.20 dram  mux 1.000
+  lognormal 98136428 rmi           leaves=383345    219.15 ns    114.4 instr   4.47 br-miss  10.41 dram  mux 1.000
+  lognormal 98136428 rmi           leaves=95836     274.80 ns    129.6 instr   5.32 br-miss  18.60 dram  mux 1.000
+  lognormal 98136428 rmi           leaves=23959     436.88 ns    154.3 instr   6.50 br-miss  32.89 dram  mux 1.000
+  lognormal 98136428 pgm           eps=64           321.43 ns    239.2 instr   5.00 br-miss   5.33 dram  mux 1.000
+  lognormal 98136428 radixspline   bits=18;err=32   328.83 ns    275.3 instr   9.12 br-miss   3.38 dram  mux 1.000
+  lognormal 98136428 btree         stx-default      805.90 ns    276.8 instr   8.76 br-miss   8.43 dram  mux 1.000
+done lognormal n=100000000

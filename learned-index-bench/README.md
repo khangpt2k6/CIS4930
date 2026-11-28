@@ -34,9 +34,30 @@ Each row is 2M random lookups of existing keys, 1 warm-up run, then the median, 
 ## Compare CPUs (WP5)
 
 ```bash
-python compare_cpus.py ../report/figures/wp5 \
+python compare_cpus.py ../report/figures/objective5 \
   "AMD Ryzen AI 7 350 (x86)|#c0392b|16777216|results/ryzen_ai7_350_x86.csv" \
+  "Intel Core i7-1355U (x86)|#7d3c98|12582912|results/intel_i7_1355u_x86.csv" \
   "Apple M6 (ARM)|#257de0|20971520|results/apple_m6_arm.csv"
 ```
 
 Each argument is `label|color|last-level-cache bytes|csv`; add one per CPU. Writes `wp5_summary.csv` and the two WP5 figures.
+
+## Tuned baselines and an oracle (Objective 1)
+
+Is the RMI better than the best non-learned search, not just better than `std::lower_bound`? Run with `--baselines`:
+
+```bash
+./bench results/<cpu-name>_<arch>_baselines.csv --pin --baselines      # add --max-n=10000000 if under 3 GB of RAM is free
+python baselines.py results/<cpu-name>_<arch>_baselines.csv ../report/figures/objective1 "<CPU name>" [llc_bytes]
+```
+
+This adds four rows per dataset and size. Each one is checked against `std::lower_bound` on 20,000 queries before it is timed.
+
+| index | what it is | extra memory |
+|---|---|---|
+| `binary_search_branchless` | binary search that picks each half with a conditional move, so it never mispredicts a branch | none |
+| `eytzinger` | the keys in breadth-first (Eytzinger) order with prefetching, after Khuong and Morin (2017) | a second copy of the keys |
+| `interpolation` | interpolation search, up to 8 probes, then binary search: a "model" with two points and no training | none |
+| `oracle` | the true position is given and the lookup only reads that key: the floor for any index | none |
+
+`baselines.py` writes `baselines_summary.csv` (every index, the best non-learned one, and the RMI's speedup over it) and `fig1_1_tuned_baselines.png`. The run takes about 10 minutes and needs about 2 GB of free RAM at 100M keys, because the Eytzinger layout is a second copy of the keys.

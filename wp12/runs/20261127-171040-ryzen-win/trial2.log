@@ -1,0 +1,123 @@
+== books_200M_uint64: 200000000 keys in file, 200000000 distinct used, loaded in 2023 ms
+tsc 1.9962 ticks/ns, empty-lookup timer cost: p50 60 ticks (30.1 ns, subtracted), p99 60.1 ns, p99.9 70.1 ns [0]
+  oracle                   mean    12.2 ns  p50   240.5  p99   511.0
+  binary_search            std::lower_bound            0 B  build      0.0 ms  mean   761.9 ns  p50  1152.2  p99  1973.8  p99.9  3296.3
+  binary_search_branchless cmov                        0 B  build      0.0 ms  mean   963.3 ns  p50  2324.4  p99  4027.7  p99.9 13295.4
+  interpolation            8 probes                    0 B  build      0.0 ms  mean  2263.2 ns  p50  2885.5  p99  4809.2  p99.9 16100.7
+  eytzinger                prefetch           1600000008 B  build   1018.3 ms  mean   301.3 ns  p50   651.2  p99  1082.1  p99.9  1933.7
+  rmi                      leaves=6250000      150000016 B  build   2776.5 ms  mean   217.1 ns  p50   420.8  p99  1873.6  p99.9  2454.7
+  rmi                      leaves=1562500       37500016 B  build   2343.6 ms  mean   250.5 ns  p50   521.0  p99  2184.2  p99.9  3767.2
+  rmi                      leaves=390625         9375016 B  build   2391.8 ms  mean   271.6 ns  p50   521.0  p99  1943.7  p99.9  2534.8
+  rmi                      leaves=97656          2343760 B  build   2258.5 ms  mean   264.0 ns  p50   460.9  p99  1913.7  p99.9  2635.0
+  rmi                      leaves=24414           585952 B  build   2229.9 ms  mean   278.0 ns  p50   501.0  p99  1963.7  p99.9  2805.4
+  rmi                      leaves=6103            146488 B  build   2188.7 ms  mean   340.4 ns  p50   571.1  p99  1983.8  p99.9  2815.4
+  pgm                      eps=8                36140632 B  build   8859.2 ms  mean   321.3 ns  p50   521.0  p99   901.7  p99.9  1352.6
+  pgm                      eps=32                4214664 B  build   7000.5 ms  mean   267.2 ns  p50   430.8  p99   891.7  p99.9  1382.6
+  pgm                      eps=128                362104 B  build   5834.6 ms  mean   345.9 ns  p50   531.0  p99  1001.9  p99.9  1472.8
+  pgm                      eps=512                 24224 B  build   5216.8 ms  mean   419.1 ns  p50   671.3  p99  1262.4  p99.9  2013.8
+  pgm                      eps=2048                 3216 B  build   5197.0 ms  mean   535.4 ns  p50   841.6  p99  1502.9  p99.9  2404.6
+  radixspline              bits=24;err=8       142498840 B  build   3023.4 ms  mean   191.3 ns  p50   621.2  p99  1082.1  p99.9  2524.8
+  radixspline              bits=22;err=16       41053464 B  build   2841.2 ms  mean   199.6 ns  p50   591.1  p99  1052.0  p99.9  1623.1
+  radixspline              bits=20;err=32       13261928 B  build   2033.9 ms  mean   178.6 ns  p50   501.0  p99  1001.9  p99.9  1452.8
+  radixspline              bits=18;err=64        4214024 B  build   1802.3 ms  mean   220.3 ns  p50   541.0  p99  1032.0  p99.9  1573.0
+  radixspline              bits=16;err=128       1224888 B  build   1554.7 ms  mean   254.0 ns  p50   571.1  p99  1102.1  p99.9  1783.4
+  radixspline              bits=14;err=256        332152 B  build   1742.8 ms  mean   292.6 ns  p50   601.1  p99  1142.2  p99.9  1693.2
+  btree                    every=8             425782240 B  build    543.8 ms  mean   615.6 ns  p50   801.5  p99  1342.6  p99.9  2234.3
+  btree                    every=32            106445824 B  build    144.1 ms  mean   604.0 ns  p50   791.5  p99  1402.7  p99.9  2354.5
+  btree                    every=128            26612176 B  build     42.4 ms  mean   518.9 ns  p50   741.4  p99  1312.5  p99.9  2134.1
+  btree                    every=512             6653632 B  build     13.3 ms  mean   555.7 ns  p50   791.5  p99  1372.6  p99.9  2284.4
+  btree                    every=2048            1664264 B  build      3.6 ms  mean   612.3 ns  p50   891.7  p99  1603.1  p99.9  2675.1
+  btree                    every=8192             416264 B  build      1.5 ms  mean   690.6 ns  p50  1001.9  p99  1793.4  p99.9  3176.1
+done books_200M_uint64
+C:/Users/2006t/sosd_data/fb_200M_uint64: removed the key 2^64-1 (PGM-index sentinel)
+== fb_200M_uint64: 200000000 keys in file, 199999999 distinct used, loaded in 2693 ms
+  oracle                   mean    22.2 ns  p50   260.5  p99  1282.4
+  binary_search            std::lower_bound            0 B  build      0.0 ms  mean   913.3 ns  p50  1252.4  p99  2284.4  p99.9  4759.1
+  binary_search_branchless cmov                        0 B  build      0.0 ms  mean  1061.0 ns  p50  2013.8  p99  3256.2  p99.9  9187.5
+  interpolation            8 probes                    0 B  build      0.0 ms  mean  1428.7 ns  p50  1332.5  p99  2374.5  p99.9  6622.6
+  eytzinger                prefetch           1600000000 B  build    645.8 ms  mean   345.9 ns  p50   681.3  p99  1322.5  p99.9  2775.3
+  rmi                      leaves=6249999      149999992 B  build   2268.9 ms  mean   780.6 ns  p50  1472.8  p99  2975.7  p99.9 10670.4
+  rmi                      leaves=1562499       37499992 B  build   2198.7 ms  mean   868.2 ns  p50  1512.9  p99  2965.7  p99.9 12012.9
+  rmi                      leaves=390624         9374992 B  build   2192.2 ms  mean   877.2 ns  p50  1472.8  p99  2705.2  p99.9  8476.2
+  rmi                      leaves=97656          2343760 B  build   2251.6 ms  mean   777.5 ns  p50  1432.7  p99  2595.0  p99.9  8606.4
+  rmi                      leaves=24414           585952 B  build   2306.6 ms  mean   813.0 ns  p50  1352.6  p99  2364.5  p99.9  9087.3
+  rmi                      leaves=6103            146488 B  build   2293.1 ms  mean  1433.2 ns  p50  2184.2  p99  3647.0  p99.9 16120.8
+  pgm                      eps=8                70248560 B  build  10374.6 ms  mean   376.9 ns  p50   591.1  p99  1092.1  p99.9  1723.3
+  pgm                      eps=32               17309608 B  build   9992.6 ms  mean   327.4 ns  p50   531.0  p99   961.8  p99.9  1502.9
+  pgm                      eps=128               4143880 B  build   8610.8 ms  mean   433.5 ns  p50   571.1  p99  1092.1  p99.9  1673.2
+  pgm                      eps=512                810544 B  build   7663.3 ms  mean   450.3 ns  p50   681.3  p99  1262.4  p99.9  1953.7
+  pgm                      eps=2048                94680 B  build   6464.3 ms  mean   588.2 ns  p50   831.6  p99  1482.8  p99.9  2424.6
+  radixspline              bits=24;err=8       196009280 B  build   3163.1 ms  mean   673.1 ns  p50   951.8  p99  1643.1  p99.9  2955.6
+  radixspline              bits=22;err=16       82327296 B  build   2653.7 ms  mean   665.3 ns  p50   891.7  p99  1583.0  p99.9  2955.6
+  radixspline              bits=20;err=32       36947600 B  build   2343.1 ms  mean   694.9 ns  p50   931.8  p99  1693.2  p99.9  4699.0
+  radixspline              bits=18;err=64       17303184 B  build   2218.8 ms  mean   622.8 ns  p50   841.6  p99  1482.8  p99.9  2474.7
+  radixspline              bits=16;err=128       8299056 B  build   2102.0 ms  mean   597.0 ns  p50   761.5  p99  1332.5  p99.9  2214.2
+  radixspline              bits=14;err=256       3988996 B  build   1879.6 ms  mean   652.9 ns  p50   791.5  p99  1402.7  p99.9  2464.7
+  btree                    every=8             425782240 B  build    751.1 ms  mean   708.2 ns  p50   901.7  p99  1432.7  p99.9  2885.5
+  btree                    every=32            106445824 B  build    175.8 ms  mean   493.9 ns  p50   731.4  p99  1252.4  p99.9  2094.0
+  btree                    every=128            26612176 B  build     41.8 ms  mean   498.0 ns  p50   701.3  p99  1242.4  p99.9  1973.8
+  btree                    every=512             6653632 B  build     11.9 ms  mean   523.9 ns  p50   771.5  p99  1472.8  p99.9  2374.5
+  btree                    every=2048            1664264 B  build      3.0 ms  mean   586.6 ns  p50   851.6  p99  1502.9  p99.9  2444.7
+  btree                    every=8192             416264 B  build      1.0 ms  mean   651.5 ns  p50   981.9  p99  1683.2  p99.9  2905.5
+done fb_200M_uint64
+== osm_cellids_200M_uint64: 200000000 keys in file, 200000000 distinct used, loaded in 2898 ms
+  oracle                   mean    12.5 ns  p50   190.4  p99   561.1
+  binary_search            std::lower_bound            0 B  build      0.0 ms  mean   753.5 ns  p50  1132.2  p99  1973.8  p99.9  3286.3
+  binary_search_branchless cmov                        0 B  build      0.0 ms  mean   900.5 ns  p50  1853.5  p99  2825.4  p99.9  8426.1
+  interpolation            8 probes                    0 B  build      0.0 ms  mean  2093.6 ns  p50  2975.7  p99  4358.3  p99.9 11562.1
+  eytzinger                prefetch           1600000008 B  build    639.4 ms  mean   292.1 ns  p50   561.1  p99   951.8  p99.9  1623.1
+  rmi                      leaves=6250000      150000016 B  build   2524.0 ms  mean   285.3 ns  p50   611.2  p99  1593.0  p99.9  2324.4
+  rmi                      leaves=1562500       37500016 B  build   2232.2 ms  mean   337.5 ns  p50   691.3  p99  1663.2  p99.9  2444.7
+  rmi                      leaves=390625         9375016 B  build   2244.8 ms  mean   403.9 ns  p50   791.5  p99  1753.3  p99.9  2615.0
+  rmi                      leaves=97656          2343760 B  build   2196.7 ms  mean   477.6 ns  p50   911.7  p99  1983.8  p99.9  3306.3
+  rmi                      leaves=24414           585952 B  build   2189.6 ms  mean   546.8 ns  p50  1062.0  p99  2033.9  p99.9  3386.5
+  rmi                      leaves=6103            146488 B  build   2196.6 ms  mean   634.7 ns  p50  1202.3  p99  2214.2  p99.9  4007.6
+  pgm                      eps=8                45898136 B  build   9884.0 ms  mean   401.1 ns  p50   551.1  p99  1011.9  p99.9  1553.0
+  pgm                      eps=32               10888384 B  build   8905.1 ms  mean   369.8 ns  p50   521.0  p99  1132.2  p99.9  1653.2
+  pgm                      eps=128               2681088 B  build   8329.8 ms  mean   420.8 ns  p50   651.2  p99  1132.2  p99.9  1633.1
+  pgm                      eps=512                680560 B  build   8383.5 ms  mean   565.2 ns  p50   731.4  p99  1292.5  p99.9  1953.7
+  pgm                      eps=2048               176568 B  build   7795.9 ms  mean   624.6 ns  p50   901.7  p99  1542.9  p99.9  2394.6
+  radixspline              bits=24;err=8       143842024 B  build   3370.8 ms  mean   254.3 ns  p50   581.1  p99  1232.4  p99.9  1903.6
+  radixspline              bits=22;err=16       56590404 B  build   3000.3 ms  mean   297.1 ns  p50   591.1  p99  1162.2  p99.9  1963.7
+  radixspline              bits=20;err=32       24157224 B  build   2674.4 ms  mean   289.6 ns  p50   581.1  p99  1172.2  p99.9  1693.2
+  radixspline              bits=18;err=64       11006720 B  build   2465.4 ms  mean   315.6 ns  p50   601.1  p99  1222.3  p99.9  1873.6
+  radixspline              bits=16;err=128       5234336 B  build   2278.7 ms  mean   349.8 ns  p50   601.1  p99  1162.2  p99.9  1803.4
+  radixspline              bits=14;err=256       2553708 B  build   2157.1 ms  mean   412.9 ns  p50   661.3  p99  1212.3  p99.9  1953.7
+  btree                    every=8             425782240 B  build    534.3 ms  mean   547.4 ns  p50   761.5  p99  1282.4  p99.9  2194.2
+  btree                    every=32            106445824 B  build    133.4 ms  mean   485.5 ns  p50   711.4  p99  1222.3  p99.9  1943.7
+  btree                    every=128            26612176 B  build     35.5 ms  mean   493.6 ns  p50   691.3  p99  1212.3  p99.9  1943.7
+  btree                    every=512             6653632 B  build     15.2 ms  mean   523.4 ns  p50   771.5  p99  1332.5  p99.9  2094.0
+  btree                    every=2048            1664264 B  build      3.5 ms  mean   577.2 ns  p50   841.6  p99  1482.8  p99.9  2404.6
+  btree                    every=8192             416264 B  build      1.0 ms  mean   651.1 ns  p50   991.9  p99  1723.3  p99.9  2705.2
+done osm_cellids_200M_uint64
+== wiki_ts_200M_uint64: 200000000 keys in file, 90437011 distinct used, loaded in 5197 ms
+  oracle                   mean    12.7 ns  p50   160.3  p99   420.8
+  binary_search            std::lower_bound            0 B  build      0.0 ms  mean   661.8 ns  p50   931.8  p99  1683.2  p99.9  2875.5
+  binary_search_branchless cmov                        0 B  build      0.0 ms  mean   748.7 ns  p50  1512.9  p99  2444.7  p99.9  7093.5
+  interpolation            8 probes                    0 B  build      0.0 ms  mean  1882.4 ns  p50  2745.2  p99  3977.6  p99.9 10820.7
+  eytzinger                prefetch            723496096 B  build    218.0 ms  mean   248.2 ns  p50   501.0  p99   911.7  p99.9  1603.1
+  rmi                      leaves=2826156       67827760 B  build   1213.5 ms  mean   128.2 ns  p50   340.7  p99  1563.0  p99.9  2114.0
+  rmi                      leaves=706539        16956952 B  build   1040.1 ms  mean   142.0 ns  p50   320.6  p99  1573.0  p99.9  2114.0
+  rmi                      leaves=176634         4239232 B  build    992.6 ms  mean   157.2 ns  p50   390.7  p99  1683.2  p99.9  2284.4
+  rmi                      leaves=44158          1059808 B  build   1007.5 ms  mean   182.3 ns  p50   320.6  p99  1583.0  p99.9  2144.1
+  rmi                      leaves=11039           264952 B  build    965.8 ms  mean   231.4 ns  p50   400.8  p99  1673.2  p99.9  2374.5
+  rmi                      leaves=2759             66232 B  build    957.3 ms  mean   351.3 ns  p50   651.2  p99  1743.3  p99.9  2374.5
+  pgm                      eps=8                 1901944 B  build   3025.9 ms  mean   204.4 ns  p50   300.6  p99   711.4  p99.9  1032.0
+  pgm                      eps=32                 355384 B  build   2914.0 ms  mean   236.1 ns  p50   340.7  p99   721.4  p99.9  1062.0
+  pgm                      eps=128                117056 B  build   3131.3 ms  mean   283.8 ns  p50   460.9  p99   921.8  p99.9  1382.6
+  pgm                      eps=512                 51392 B  build   3653.1 ms  mean   397.4 ns  p50   631.2  p99  1162.2  p99.9  1733.3
+  pgm                      eps=2048                 6624 B  build   2865.3 ms  mean   516.6 ns  p50   801.5  p99  1452.8  p99.9  2274.3
+  radixspline              bits=24;err=8        64093464 B  build   1052.8 ms  mean   126.5 ns  p50   430.8  p99   841.6  p99.9  1322.5
+  radixspline              bits=22;err=16       16500440 B  build    928.9 ms  mean   124.1 ns  p50   360.7  p99   811.5  p99.9  1262.4
+  radixspline              bits=20;err=32        4400308 B  build    882.2 ms  mean   134.1 ns  p50   350.7  p99   791.5  p99.9  1302.5
+  radixspline              bits=18;err=64        1265556 B  build    877.8 ms  mean   159.2 ns  p50   380.7  p99   871.7  p99.9  1362.6
+  radixspline              bits=16;err=128        420340 B  build    898.4 ms  mean   206.5 ns  p50   450.9  p99   941.8  p99.9  1512.9
+  radixspline              bits=14;err=256        172592 B  build    941.0 ms  mean   258.8 ns  p50   531.0  p99  1011.9  p99.9  1472.8
+  btree                    every=8             192532744 B  build    234.4 ms  mean   492.9 ns  p50   661.3  p99  1132.2  p99.9  1863.6
+  btree                    every=32             48133912 B  build     60.4 ms  mean   410.8 ns  p50   571.1  p99  1052.0  p99.9  1683.2
+  btree                    every=128            12033608 B  build     16.5 ms  mean   431.3 ns  p50   601.1  p99  1112.1  p99.9  1683.2
+  btree                    every=512             3009192 B  build      8.5 ms  mean   462.6 ns  p50   661.3  p99  1222.3  p99.9  1933.7
+  btree                    every=2048             752496 B  build      1.3 ms  mean   532.7 ns  p50   781.5  p99  1382.6  p99.9  2204.2
+  btree                    every=8192             188520 B  build      0.4 ms  mean   629.1 ns  p50   951.8  p99  1673.2  p99.9  2765.3
+done wiki_ts_200M_uint64
+peak memory 3.02 GiB

@@ -1,0 +1,23 @@
+C:/Users/2006t/sosd_data/fb_200M_uint64: removed the key 2^64-1 (PGM-index sentinel)
+== fb_200M_uint64: 200000000 keys in file, 199999999 distinct used, loaded in 3180 ms
+tsc 1.9962 ticks/ns, empty-lookup timer cost: p50 60 ticks (30.1 ns, subtracted), p99 60.1 ns, p99.9 60.1 ns [0]
+  binary_search            std::lower_bound            0 B  build      0.0 ms  mean   771.8 ns  p50  1142.2  p99  1933.7  p99.9  3126.0
+  rmi                      leaves=6249999      149999992 B  build   2241.4 ms  mean   706.6 ns  p50  1312.5  p99  2174.1  p99.9  3847.3
+  rmi                      leaves=1562499       37499992 B  build   2186.6 ms  mean   709.3 ns  p50  1312.5  p99  2174.1  p99.9  3887.4
+  rmi                      leaves=390624         9374992 B  build   2180.1 ms  mean   710.4 ns  p50  1312.5  p99  2174.1  p99.9  3687.0
+  rmi                      leaves=97656          2343760 B  build   2185.7 ms  mean   708.3 ns  p50  1312.5  p99  2184.2  p99.9  3757.2
+  rmi                      leaves=24414           585952 B  build   2166.4 ms  mean   703.9 ns  p50  1302.5  p99  2154.1  p99.9  3847.3
+  rmi                      leaves=6103            146488 B  build   2170.9 ms  mean  1284.1 ns  p50  2184.2  p99  3346.4  p99.9  9267.7
+  pgm                      eps=8                70248560 B  build  10193.1 ms  mean   343.0 ns  p50   521.0  p99  1042.0  p99.9  1482.8
+  pgm                      eps=32               17309608 B  build   9069.9 ms  mean   314.4 ns  p50   521.0  p99  1112.1  p99.9  1583.0
+  pgm                      eps=128               4143880 B  build   8295.1 ms  mean   359.0 ns  p50   551.1  p99  1142.2  p99.9  1723.3
+  pgm                      eps=512                810544 B  build   6579.3 ms  mean   500.1 ns  p50   721.4  p99  1292.5  p99.9  2254.3
+  pgm                      eps=2048                94680 B  build   7069.3 ms  mean   631.5 ns  p50   851.6  p99  2124.1  p99.9  3055.8
+  radixspline              bits=24;err=8       196009280 B  build   3456.0 ms  mean   722.4 ns  p50  1022.0  p99  1733.3  p99.9  3176.1
+  radixspline              bits=22;err=16       82327296 B  build   2960.1 ms  mean   653.7 ns  p50   851.6  p99  1512.9  p99.9  2675.1
+  radixspline              bits=20;err=32       36947600 B  build   2757.1 ms  mean   713.5 ns  p50   911.7  p99  1613.1  p99.9  7183.7
+  radixspline              bits=18;err=64       17303184 B  build   2550.4 ms  mean   599.3 ns  p50   781.5  p99  1352.6  p99.9  2144.1
+  radixspline              bits=16;err=128       8299056 B  build   2278.3 ms  mean   655.9 ns  p50   861.6  p99  1553.0  p99.9  2665.1
+  radixspline              bits=14;err=256       3988996 B  build   2192.1 ms  mean   703.5 ns  p50   821.6  p99  1412.7  p99.9  2154.1
+done fb_200M_uint64
+peak memory 2.99 GiB

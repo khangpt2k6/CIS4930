@@ -1,0 +1,10 @@
+date: 2026-11-27 13:57 EST
+cpu: AMD Ryzen AI 7 350 w/ Radeon 860M (8 cores; L2 1 MB per core, 8 MB total; L3 16 MB)
+memory: 15.3 GB
+os: Microsoft Windows 11 Home 10.0.26200
+compiler: g++.exe (MinGW-W64 x86_64-ucrt-posix-seh, built by Brecht Sanders, r2) 16.1.0
+flags: -O3 -march=native -std=c++17
+command: bench results/ryzen_ai7_350_x86_baselines.csv --pin --baselines
+pinning: core 0, high priority class (--pin)
+power: AC
+note: other applications (browser, editor) were open during the run

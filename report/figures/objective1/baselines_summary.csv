@@ -1,0 +1,11 @@
+cpu,dataset,n,binary_search_ns,binary_search_branchless_ns,eytzinger_ns,interpolation_ns,rmi_ns,oracle_ns,best_rmi_leaves,best_rmi_bytes,best_non_ml,best_non_ml_ns,rmi_spread,best_non_ml_spread,rmi_vs_std,rmi_vs_best_non_ml,rmi_vs_oracle
+AMD Ryzen AI 7 350,lognormal,99996,130.28,26.09,38.07,266.56,93.29,1.31,1562,37504,binary_search_branchless,26.09,1.011,1.01,1.397,0.28,71.21
+AMD Ryzen AI 7 350,lognormal,999773,202.27,92.23,54.26,418.81,120.38,3.47,15621,374920,eytzinger,54.26,1.111,1.054,1.68,0.451,34.69
+AMD Ryzen AI 7 350,lognormal,9980657,400.76,444.13,130.6,1073.47,147.04,9.75,155947,3742744,eytzinger,130.6,1.039,1.132,2.726,0.888,15.08
+AMD Ryzen AI 7 350,lognormal,49527905,558.51,623.3,210.58,1326.16,158.5,11.39,773873,18572968,eytzinger,210.58,1.019,1.092,3.524,1.329,13.92
+AMD Ryzen AI 7 350,lognormal,98136428,632.62,768.31,237.47,1560.65,161.18,11.46,1533381,36801160,eytzinger,237.47,1.019,1.015,3.925,1.473,14.06
+AMD Ryzen AI 7 350,uniform,100000,96.64,29.36,38.91,72.07,41.2,1.54,1562,37504,binary_search_branchless,29.36,1.01,1.192,2.346,0.713,26.75
+AMD Ryzen AI 7 350,uniform,1000000,211.34,129.12,51.2,122.12,58.2,4.7,15625,375016,eytzinger,51.2,1.056,1.005,3.631,0.88,12.38
+AMD Ryzen AI 7 350,uniform,10000000,426.9,410.07,133.71,191.78,71.4,9.37,156250,3750016,eytzinger,133.71,1.077,1.05,5.979,1.873,7.62
+AMD Ryzen AI 7 350,uniform,49999998,577.22,726.98,234.67,238.53,97.45,11.44,781249,18749992,eytzinger,234.67,1.074,1.042,5.923,2.408,8.52
+AMD Ryzen AI 7 350,uniform,99999994,655.78,769.84,260.13,251.97,102.57,12.37,1562499,37499992,interpolation,251.97,1.106,1.203,6.393,2.457,8.29

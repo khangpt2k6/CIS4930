@@ -1,0 +1,24 @@
+date: 2026-11-26T21:00:03-05:00
+power: AC (BatteryStatus=2)
+windows power plan: Power Scheme GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (Balanced)
+kernel: 6.6.87.2-microsoft-standard-WSL2
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+CPU(s):                               16
+Model name:                           AMD Ryzen AI 7 350 w/ Radeon 860M
+CPU family:                           26
+Model:                                96
+Thread(s) per core:                   2
+Core(s) per socket:                   8
+L1d cache:                            384 KiB (8 instances)
+L1i cache:                            256 KiB (8 instances)
+L2 cache:                             8 MiB (8 instances)
+L3 cache:                             16 MiB (1 instance)
+memory: 7 GiB visible to Linux
+transparent_hugepage: always [madvise] never
+perf_event_paranoid: 2
+compiler: g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+flags: -O3 -march=native -std=c++17 -DNDEBUG
+deps: PGM-index c6fcf3d, RadixSpline ab96aa5, STX B+tree 0.9 (SOSD f52f4cb)
+source sha256: 0d4e2cff164d3d936f08062c100b73071a70036596cf79155039999a5f8d4455
+args: --pin --reps 5 --sizes 100000,1000000,10000000,50000000,100000000, trials 3
+power at end: 2
